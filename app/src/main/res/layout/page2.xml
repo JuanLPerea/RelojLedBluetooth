@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/design_default_color_primary"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:gravity="center_horizontal"
+        android:text="Modo"
+        android:textColor="@android:color/white"
+        android:textSize="32dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:text="Selecciona Modo:"
+        android:textColor="@android:color/white" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupModo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radioButtonNormal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Normal" />
+
+        <RadioButton
+            android:id="@+id/radioButtonMini"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mini" />
+
+        <RadioButton
+            android:id="@+id/radioButtonAleat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Aleatorio" />
+
+        <RadioButton
+            android:id="@+id/radioButtonFecha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Fecha" />
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:text="Texto:"
+        android:textColor="@android:color/white" />
+
+    <EditText
+        android:id="@+id/textoEnviarET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:ems="10"
+        android:hint="Introduce un texto para enviar ..."
+        android:inputType="textPersonName"
+        android:maxLength="64" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/enviar_textoBTN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Enviar" />
+
+        <CheckBox
+            android:id="@+id/checkTexto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Repetir"
+            android:layout_marginLeft="20dp"/>
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
