@@ -30,226 +30,86 @@
             android:layout_height="0dp"
             android:layout_weight="1">
 
-            <LinearLayout
-                android:id="@+id/box_1"
+
+            <Button
+                android:id="@+id/boton1"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:layout_weight="1"
-                    android:tag="R"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:layout_weight="1"
-                    android:tag="V"
-                    android:background="@android:color/holo_green_light" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_2"
+            <Button
+                android:id="@+id/boton2"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:layout_weight="1"
-                    android:tag="R"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:layout_weight="1"
-                    android:tag="V"
-                    android:background="@android:color/holo_green_light" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_3"
+            <Button
+                android:id="@+id/boton3"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo3"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:layout_weight="1"
-                    android:tag="R"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde3"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:layout_weight="1"
-                    android:tag="V"
-                    android:background="@android:color/holo_green_light" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_4"
+            <Button
+                android:id="@+id/boton4"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo4"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:layout_weight="1"
-                    android:tag="R"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde4"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:layout_weight="1"
-                    android:tag="V"
-                    android:background="@android:color/holo_green_light" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_5"
+            <Button
+                android:id="@+id/boton5"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo5"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:layout_weight="1"
-                    android:tag="R"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde5"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:layout_weight="1"
-                    android:tag="V"
-                    android:background="@android:color/holo_green_light" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_6"
+            <Button
+                android:id="@+id/boton6"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo6"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:layout_weight="1"
-                    android:tag="R"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde6"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:layout_weight="1"
-                    android:tag="V"
-                    android:background="@android:color/holo_green_light" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_7"
+            <Button
+                android:id="@+id/boton7"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo7"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:layout_weight="1"
-                    android:tag="R"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde7"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:layout_weight="1"
-                    android:tag="V"
-                    android:background="@android:color/holo_green_light" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_8"
+            <Button
+                android:id="@+id/boton8"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo8"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:layout_weight="1"
-                    android:tag="R"
-                    android:background="@android:color/holo_red_light" />
-
-                <Button
-                    android:id="@+id/botonverde8"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:layout_weight="1"
-                    android:tag="V"
-                    android:background="@android:color/holo_green_light" />
-
-
-            </LinearLayout>
 
         </TableRow>
 
@@ -259,218 +119,86 @@
             android:layout_height="0dp"
             android:layout_weight="1">
 
-            <LinearLayout
-                android:id="@+id/box_9"
+
+            <Button
+                android:id="@+id/boton9"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo9"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:layout_weight="1"
-                    android:tag="R"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde9"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:layout_weight="1"
-                    android:tag="V"
-                    android:background="@android:color/holo_green_light" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_10"
+            <Button
+                android:id="@+id/boton10"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo10"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:layout_weight="1"
-                    android:tag="R"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde10"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:layout_weight="1"
-                    android:tag="V"
-                    android:background="@android:color/holo_green_light" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_11"
+            <Button
+                android:id="@+id/boton11"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo11"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:layout_weight="1"
-                    android:tag="R"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde11"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:layout_weight="1"
-                    android:tag="V"
-                    android:background="@android:color/holo_green_light" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_12"
+            <Button
+                android:id="@+id/boton12"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo12"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:layout_weight="1"
-                    android:tag="R"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde12"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:layout_weight="1"
-                    android:tag="V"
-                    android:background="@android:color/holo_green_light" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_13"
+            <Button
+                android:id="@+id/boton13"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo13"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:layout_weight="1"
-                    android:tag="R"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde13"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:layout_weight="1"
-                    android:tag="V"
-                    android:background="@android:color/holo_green_light" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_14"
+            <Button
+                android:id="@+id/boton14"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo14"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:layout_weight="1"
-                    android:tag="R"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde14"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:layout_weight="1"
-                    android:tag="V"
-                    android:background="@android:color/holo_green_light" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_15"
+            <Button
+                android:id="@+id/boton15"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo15"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:layout_weight="1"
-                    android:tag="R"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde15"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:layout_weight="1"
-                    android:tag="V"
-                    android:background="@android:color/holo_green_light" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_16"
+            <Button
+                android:id="@+id/boton16"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo16"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:layout_weight="1"
-                    android:tag="R"
-                    android:background="@android:color/holo_red_light" />
-
-                <Button
-                    android:id="@+id/botonverde16"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:layout_weight="1"
-                    android:tag="V"
-                    android:background="@android:color/holo_green_light" />
-
-
-            </LinearLayout>
 
         </TableRow>
 
@@ -480,218 +208,86 @@
             android:layout_height="0dp"
             android:layout_weight="1">
 
-            <LinearLayout
-                android:id="@+id/box_17"
+
+            <Button
+                android:id="@+id/boton17"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo17"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde17"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_18"
+            <Button
+                android:id="@+id/boton18"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo18"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde18"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_19"
+            <Button
+                android:id="@+id/boton19"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo19"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde19"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_20"
+            <Button
+                android:id="@+id/boton20"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_21"
+            <Button
+                android:id="@+id/boton21"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo21"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde21"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_22"
+            <Button
+                android:id="@+id/boton22"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo22"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde22"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_23"
+            <Button
+                android:id="@+id/boton23"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo23"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde23"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_24"
+            <Button
+                android:id="@+id/boton24"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo24"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
-
-                <Button
-                    android:id="@+id/botonverde24"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-
-
-            </LinearLayout>
 
         </TableRow>
 
@@ -701,218 +297,86 @@
             android:layout_height="0dp"
             android:layout_weight="1">
 
-            <LinearLayout
-                android:id="@+id/box_25"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+
+            <Button
+                android:id="@+id/boton25"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo25"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde25"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_26"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+            <Button
+                android:id="@+id/boton26"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo26"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde26"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_27"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+            <Button
+                android:id="@+id/boton27"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo27"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde27"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_28"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+            <Button
+                android:id="@+id/boton28"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo28"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde28"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_29"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+            <Button
+                android:id="@+id/boton29"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo29"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde29"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_30"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+            <Button
+                android:id="@+id/boton30"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo30"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde30"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_31"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+            <Button
+                android:id="@+id/boton31"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo31"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde31"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_32"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+            <Button
+                android:id="@+id/boton32"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo32"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
-
-                <Button
-                    android:id="@+id/botonverde32"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-
-
-            </LinearLayout>
 
         </TableRow>
 
@@ -922,218 +386,86 @@
             android:layout_height="0dp"
             android:layout_weight="1">
 
-            <LinearLayout
-                android:id="@+id/box_33"
+
+            <Button
+                android:id="@+id/boton33"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo33"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde33"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_34"
+            <Button
+                android:id="@+id/boton34"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo34"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde34"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_35"
+            <Button
+                android:id="@+id/boton35"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo35"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde35"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_36"
+            <Button
+                android:id="@+id/boton36"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo36"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde36"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_37"
+            <Button
+                android:id="@+id/boton37"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo37"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde37"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_38"
+            <Button
+                android:id="@+id/boton38"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo38"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde38"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_39"
+            <Button
+                android:id="@+id/boton39"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo39"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde39"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_40"
+            <Button
+                android:id="@+id/boton40"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo40"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
-
-                <Button
-                    android:id="@+id/botonverde40"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-
-
-            </LinearLayout>
 
         </TableRow>
 
@@ -1143,218 +475,85 @@
             android:layout_height="0dp"
             android:layout_weight="1">
 
-            <LinearLayout
-                android:id="@+id/box_41"
+
+            <Button
+                android:id="@+id/boton41"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo41"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
-
-                <Button
-                    android:id="@+id/botonverde41"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_42"
+            <Button
+                android:id="@+id/boton42"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo42"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde42"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_43"
+            <Button
+                android:id="@+id/boton43"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo43"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde43"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_44"
+            <Button
+                android:id="@+id/boton44"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo44"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde44"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_45"
+            <Button
+                android:id="@+id/boton45"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo45"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde45"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_46"
+            <Button
+                android:id="@+id/boton46"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo46"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde46"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_47"
+            <Button
+                android:id="@+id/boton47"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo47"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde47"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_48"
+            <Button
+                android:id="@+id/boton48"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo48"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
-
-                <Button
-                    android:id="@+id/botonverde48"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-
-
-            </LinearLayout>
 
         </TableRow>
 
@@ -1364,218 +563,86 @@
             android:layout_height="0dp"
             android:layout_weight="1">
 
-            <LinearLayout
-                android:id="@+id/box_49"
+
+            <Button
+                android:id="@+id/boton49"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo49"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde49"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_50"
+            <Button
+                android:id="@+id/boton50"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo50"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde50"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_51"
+            <Button
+                android:id="@+id/boton51"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo51"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde51"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_52"
+            <Button
+                android:id="@+id/boton52"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo52"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde52"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_53"
+            <Button
+                android:id="@+id/boton53"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo53"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde53"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_54"
+            <Button
+                android:id="@+id/boton54"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo54"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde54"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_55"
+            <Button
+                android:id="@+id/boton55"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo55"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde55"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_56"
+            <Button
+                android:id="@+id/boton56"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo56"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
-
-                <Button
-                    android:id="@+id/botonverde56"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-
-
-            </LinearLayout>
 
         </TableRow>
 
@@ -1585,218 +652,86 @@
             android:layout_height="0dp"
             android:layout_weight="1">
 
-            <LinearLayout
-                android:id="@+id/box_57"
+
+            <Button
+                android:id="@+id/boton57"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo57"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde57"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_58"
+            <Button
+                android:id="@+id/boton58"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo58"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde58"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_59"
+            <Button
+                android:id="@+id/boton59"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo59"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde59"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_60"
+            <Button
+                android:id="@+id/boton60"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo60"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde60"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_61"
+            <Button
+                android:id="@+id/boton61"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo61"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde61"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_62"
+            <Button
+                android:id="@+id/boton62"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo62"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde62"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_63"
+            <Button
+                android:id="@+id/boton63"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo63"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
 
-                <Button
-                    android:id="@+id/botonverde63"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/box_64"
+            <Button
+                android:id="@+id/boton64"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="@android:color/transparent"
+                android:tag="A" />
 
-                <Button
-                    android:id="@+id/botonrojo64"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="R"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
-
-                <Button
-                    android:id="@+id/botonverde64"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:tag="V"
-                    android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
-
-
-            </LinearLayout>
 
         </TableRow>
 

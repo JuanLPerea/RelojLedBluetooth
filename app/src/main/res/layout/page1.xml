@@ -63,12 +63,15 @@
         android:gravity="center_horizontal"
         android:orientation="horizontal">
 
+
+
         <ImageButton
-            android:id="@+id/aumentarBTN"
+            android:id="@+id/disminuirBTN"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
-            app:srcCompat="@drawable/add"/>
+            app:srcCompat="@drawable/minus"
+            />
 
         <TextView
             android:id="@+id/apagar_cada"
@@ -80,12 +83,13 @@
             android:textSize="32dp" />
 
         <ImageButton
-            android:id="@+id/disminuirBTN"
+            android:id="@+id/aumentarBTN"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            app:srcCompat="@drawable/minus"
-        />
+            app:srcCompat="@drawable/add"/>
+
+
     </LinearLayout>
 
 </LinearLayout>
