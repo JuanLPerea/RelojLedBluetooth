@@ -17,11 +17,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.e.relojledbluetooth.Clases.Ajustes;
 import com.e.relojledbluetooth.Clases.Animacion;
+import com.e.relojledbluetooth.Clases.GuardarSharedPrefs;
 import com.e.relojledbluetooth.MainActivity;
 import com.e.relojledbluetooth.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PageFragment4 extends Fragment implements View.OnClickListener {
 
@@ -32,22 +35,10 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
     ImageButton borrar, avanzar, retroceder, grabar, enviar;
     TextView numAnim;
     Animacion animacion;
+    Ajustes ajustes;
     int numeroPantalla;
+    int dataset[];
 
-    int dataset[] = {3,6,12,24,48,96,192,96 , 6,12,24,48,96,192,96,48 ,
-        12,24,48,96,192,96,48,0 ,24,48,96,192,96,48,0,12 ,
-        48,96,192,96,48,0,12,6 ,96,192,96,48,0,12,6,3 ,
-        192,96,48,0,12,6,3,6 , 96,48,0,12,6,3,6,12 ,
-        48,0,12,6,3,6,12,24 , 0,12,6,3,6,12,24,48 ,
-        12,6,3,6,12,24,48,96 , 6,3,6,12,24,48,96,192 ,
-
-        192,96,48,0,12,6,3,6 , 96,48,0,12,6,3,6,12 ,
-        48,0,12,6,3,6,12,24 , 0,12,6,3,6,12,24,48 ,
-        12,6,3,6,12,24,48,96 , 6,3,6,12,24,48,96,192 ,
-        3,6,12,24,48,96,192,96 , 6,12,24,48,96,192,96,48 ,
-        12,24,48,96,192,96,48,0 , 24,48,96,192,96,48,0,12 ,
-        48,96,192,96,48,0,12,6 , 96,192,96,48,0,12,6,3 };
-    
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -57,12 +48,10 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
         animacion = new Animacion();
         numeroPantalla = 0;
 
+        // Cargar del Shared Preferences si existe alguna animación guardada y de paso todos los ajustes de la aplicación
+        cargarAjustes();
 
-        // TODO cargar del Shared Preferences si existe alguna animación guardada
-
-        
         inicializarVistas();
-
 
         dibujarPantalla(0);
         
@@ -93,10 +82,36 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
             }
         });
 
-
-
-
         return rootView;
+
+    }
+
+    private void cargarAjustes() {
+        ajustes = GuardarSharedPrefs.cargarDatos(getContext());
+        if (ajustes == null) {
+            ajustes = new Ajustes();
+            Log.d("Miapp", "Ajustes creados");
+        } else {
+            // Por defecto cargamos la primera animación que haya guardada
+            dataset = ajustes.getAnimaciones().get(0).getLed();
+            Log.d("Miapp", "Ajustes cargados");
+        }
+    }
+
+    private void guardarAjustes() {
+
+        animacion = new Animacion(dataset , "Original");
+        List listaAnimaciones = new ArrayList<>();
+        listaAnimaciones.add(animacion);
+        Animacion animacion1 = new Animacion(dataset, "Segunda");
+        listaAnimaciones.add(animacion1);
+        ajustes.setAnimaciones(listaAnimaciones);
+        ajustes.setTocarHoras(true);
+        ajustes.setAlarma("12:30:00LMXJV");
+        ajustes.setBrillo(1);
+        ajustes.setModoReloj(1);
+        ajustes.setApagarEnSeg(0);
+        GuardarSharedPrefs.guardarDatos(getContext(), ajustes);
 
     }
 
@@ -272,7 +287,7 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Log.d("Miapp" ,  "Pulsado: " + v.getId());
+     //   Log.d("Miapp" ,  "Pulsado: " + v.getId());
 
         switch (v.getTag().toString()) {
             case "A":
@@ -437,6 +452,7 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
 
         // cada pantalla son 16 enteros 8 para el rojo y 8 para el verde
         int numeroLed = 0;
+        int matriztemporal[] = new int[65];
 
         // cargar los datos de color rojo
         for (int posicion = pantalla * 8; posicion < ((pantalla * 8) + 8); posicion++) {
@@ -451,8 +467,10 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
                  if (numeroEnBinario.charAt(posicionBinario) == '1') {
                      // Esta posición tiene el led rojo encendido
                      pintarLed( numeroLed, 1);
+                     matriztemporal[numeroLed] = 1;
                  } else {
                      pintarLed( numeroLed, 0);
+                     matriztemporal[numeroLed] = 0;
                  }
             }
         }
@@ -463,7 +481,7 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
         // En este bucle vamos recuperando los valores
         for (int posicion = ((pantalla * 8) + 96); posicion < ((pantalla * 8) + 104); posicion++) {
 
-            Log.d("Miapp" ,  " Numero en Binario: " + obtenerBinario(dataset[posicion]));
+        //    Log.d("Miapp" ,  " Numero en Binario: " + obtenerBinario(dataset[posicion]));
 
             // convertir en binario cada entero y mirar si es un 0 o 1 para poner el color que corresponda
             for (int posicionBinario = 0; posicionBinario < 8; posicionBinario++) {
@@ -472,17 +490,24 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
                 numeroLed++;
 
                 if (numeroEnBinario.charAt(posicionBinario) == '1') {
-                    // Esta posición tiene el led rojo encendido
-                    pintarLed( numeroLed, 2);
+                    // Esta posición tiene el led verde encendido
+                    // Comprobar si tiene el rojo también encendido,
+                    // si es así pintarlo de amarillo
+                    if (matriztemporal[numeroLed] == 1) {
+                        // Pintar de amarillo
+                        pintarLed( numeroLed, 3);
+                        matriztemporal[numeroLed] = 3;
+                    } else {
+                        // Pintar de verde
+                        pintarLed( numeroLed, 2);
+                        matriztemporal[numeroLed] = 2;
+                    }
                 }
             }
         }
-
     }
 
     private void pintarLed(int posicion, int color) {
-
-     //   apagarBotones();
 
         int miColor = Color.TRANSPARENT;
         String etiqueta = "";
@@ -806,3 +831,20 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
         return binarioString;
     }
 }
+
+
+/*
+    int dataset[] = {3,6,12,24,48,96,192,96 , 6,12,24,48,96,192,96,48 ,
+        12,24,48,96,192,96,48,0 ,24,48,96,192,96,48,0,12 ,
+        48,96,192,96,48,0,12,6 ,96,192,96,48,0,12,6,3 ,
+        192,96,48,0,12,6,3,6 , 96,48,0,12,6,3,6,12 ,
+        48,0,12,6,3,6,12,24 , 0,12,6,3,6,12,24,48 ,
+        12,6,3,6,12,24,48,96 , 6,3,6,12,24,48,96,192 ,
+
+        192,96,48,0,12,6,3,6 , 96,48,0,12,6,3,6,12 ,
+        48,0,12,6,3,6,12,24 , 0,12,6,3,6,12,24,48 ,
+        12,6,3,6,12,24,48,96 , 6,3,6,12,24,48,96,192 ,
+        3,6,12,24,48,96,192,96 , 6,12,24,48,96,192,96,48 ,
+        12,24,48,96,192,96,48,0 , 24,48,96,192,96,48,0,12 ,
+        48,96,192,96,48,0,12,6 , 96,192,96,48,0,12,6,3 };
+    */

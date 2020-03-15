@@ -17,19 +17,19 @@ public class Animacion {
      */
 
     private int led[];
-    private int numAnim;
     private boolean esNuevo;
+    private String nombre;
 
-    public Animacion(int[] led, int numAnim) {
+    public Animacion(int[] led, String nombre) {
         this.led = led;
-        this.numAnim = numAnim;
         this.esNuevo = false;
+        this.nombre = nombre;
     }
 
     public Animacion() {
-        this.numAnim = 0;
         this.esNuevo = true;
-        led = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,};
+        this.led = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,};
+        this.nombre = "Nuevo";
     }
 
     public int[] getLed() {
@@ -40,13 +40,6 @@ public class Animacion {
         this.led = led;
     }
 
-    public int getNumAnim() {
-        return numAnim;
-    }
-
-    public void setNumAnim(int numAnim) {
-        this.numAnim = numAnim;
-    }
 
     public boolean EsNuevo() {
         return esNuevo;
@@ -58,5 +51,13 @@ public class Animacion {
 
     public void modificarLed(int indice, int color) {
         led[indice] = color;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 }

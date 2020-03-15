@@ -1,16 +1,18 @@
 package com.e.relojledbluetooth.Clases;
 
+import java.util.List;
+
 public class Ajustes {
 
-    private Animacion animacion;
+    private List<Animacion> animaciones;
     private int brillo;
     private int apagarEnSeg;
     private int modoReloj;
     private String alarma;
     private boolean tocarHoras;
 
-    public Ajustes(Animacion animacion, int brillo, int apagarEnSeg, int modoReloj, String alarma, boolean tocarHoras) {
-        this.animacion = animacion;
+    public Ajustes(List<Animacion> animaciones, int brillo, int apagarEnSeg, int modoReloj, String alarma, boolean tocarHoras) {
+        this.animaciones = animaciones;
         this.brillo = brillo;
         this.apagarEnSeg = apagarEnSeg;
         this.modoReloj = modoReloj;
@@ -21,12 +23,12 @@ public class Ajustes {
     public Ajustes() {
     }
 
-    public Animacion getAnimacion() {
-        return animacion;
+    public List<Animacion> getAnimaciones() {
+        return animaciones;
     }
 
-    public void setAnimacion(Animacion animacion) {
-        this.animacion = animacion;
+    public void setAnimaciones(List<Animacion> animaciones) {
+        this.animaciones = animaciones;
     }
 
     public int getBrillo() {

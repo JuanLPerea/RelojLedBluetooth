@@ -1,6 +1,5 @@
 package com.e.relojledbluetooth;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.PagerAdapter;

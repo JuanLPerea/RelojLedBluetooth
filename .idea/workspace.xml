@@ -169,9 +169,14 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/e/relojledbluetooth/Fragments/PageFragment4.java</url>
-          <line>463</line>
-          <option name="timeStamp" value="4" />
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/e/relojledbluetooth/Fragments/PageFragment1.java</url>
+          <line>185</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/e/relojledbluetooth/Clases/GuardarSharedPrefs.java</url>
+          <line>70</line>
+          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

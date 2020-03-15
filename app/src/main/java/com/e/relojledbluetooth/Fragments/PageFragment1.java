@@ -15,6 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.e.relojledbluetooth.Clases.Ajustes;
+import com.e.relojledbluetooth.Clases.GuardarSharedPrefs;
 import com.e.relojledbluetooth.MainActivity;
 import com.e.relojledbluetooth.R;
 import com.google.android.material.tabs.TabLayout;
@@ -34,6 +36,7 @@ public class PageFragment1 extends Fragment {
     private ImageButton  aumentarTiempo, disminuirTiempo;
     private int tiempoApagar, brillo;
     private SeekBar brilloBar;
+    private Ajustes ajustes;
 
     @Nullable
     @Override
@@ -47,10 +50,11 @@ public class PageFragment1 extends Fragment {
         tiempoApagarTV = rootView.findViewById(R.id.apagar_cada);
         brilloBar = rootView.findViewById(R.id.seekBrillo);
 
+        // Cargamos los ajustes del Shared Preferences
+        cargarAjustes();
 
-        tiempoApagar = 0;
-        brillo = 0;
 
+        // Listeners para los controles
         ponerEnHora.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,8 +65,9 @@ public class PageFragment1 extends Fragment {
         aumentarTiempo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tiempoApagar += 10;
-                if (tiempoApagar > 100) tiempoApagar = 0;
+                tiempoApagar += 5;
+                if (tiempoApagar % 5 != 0) tiempoApagar = 0;
+                if (tiempoApagar > 60) tiempoApagar = 0;
                 tiempoApagarTV.setText(tiempoApagar + " Seg.");
                 ((MainActivity) getActivity()).enviarComandoBluetooth("#A#" + tiempoApagar);
             }
@@ -71,8 +76,9 @@ public class PageFragment1 extends Fragment {
         disminuirTiempo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tiempoApagar -= 10;
-                if (tiempoApagar < 0) tiempoApagar = 100;
+                tiempoApagar -= 5;
+                if (tiempoApagar % 5 != 0) tiempoApagar = 0;
+                if (tiempoApagar < 0) tiempoApagar = 60;
                 tiempoApagarTV.setText(tiempoApagar + " Seg.");
                 ((MainActivity) getActivity()).enviarComandoBluetooth("#A#" + tiempoApagar);
             }
@@ -107,6 +113,14 @@ public class PageFragment1 extends Fragment {
         }, 0, 1000);
 
         return rootView;
+    }
+
+    private void cargarAjustes() {
+        ajustes = GuardarSharedPrefs.cargarDatos(getContext());
+        tiempoApagar = ajustes.getApagarEnSeg();
+        brillo = ajustes.getBrillo();
+        tiempoApagarTV.setText(tiempoApagar + "");
+        brilloBar.setProgress((int)(brillo * 6.66666666667));
     }
 
 
@@ -160,8 +174,24 @@ public class PageFragment1 extends Fragment {
     public void onResume() {
         super.onResume();
         getActivity().runOnUiThread(Timer_Tick);
+        cargarAjustes();
+        Log.d("Miapp", "Fragment 1 reanudado");
+
     }
 
+
+    private void guardarAjustes() {
+        ajustes.setBrillo(brillo);
+        ajustes.setApagarEnSeg(tiempoApagar);
+        GuardarSharedPrefs.guardarDatos(getContext(), ajustes);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        guardarAjustes();
+        Log.d("Miapp", "Fragment 1 pausado");
+    }
 
 
 }
