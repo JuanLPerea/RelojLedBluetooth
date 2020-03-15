@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/RelojLedBluetooth.iml" filepath="$PROJECT_DIR$/RelojLedBluetooth.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RelojLedBluetooth.iml" filepath="$PROJECT_DIR$/RelojLedBluetooth.iml" group="RelojLedBluetooth" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="RelojLedBluetooth/app" />
     </modules>
   </component>
 </project>

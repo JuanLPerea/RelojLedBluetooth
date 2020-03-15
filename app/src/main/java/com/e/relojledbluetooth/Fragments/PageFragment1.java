@@ -138,7 +138,7 @@ public class PageFragment1 extends Fragment {
             // Recuperamos la hora del sistema
             Date hora = new Date();
             DateFormat hourFormat = new SimpleDateFormat("HH:mm:ss <> d/M/yyyy");
-            DateFormat hourFormatBluetooth = new SimpleDateFormat("HH/mm/ss/d/M/yyyy/u");
+            DateFormat hourFormatBluetooth = new SimpleDateFormat("HH#mm#ss#d#M#yyyy#u");
 
             String mostrarHora = hourFormat.format(hora);
             hora_txt = hourFormatBluetooth.format(hora);

@@ -17,8 +17,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.e.relojledbluetooth.Clases.Animacion;
 import com.e.relojledbluetooth.MainActivity;
 import com.e.relojledbluetooth.R;
+
+import java.util.ArrayList;
 
 public class PageFragment4 extends Fragment implements View.OnClickListener {
 
@@ -28,14 +31,40 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
     Button b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12, b13, b14, b15, b16, b17, b18, b19, b20, b21, b22, b23, b24, b25, b26, b27, b28, b29, b30, b31, b32, b33, b34, b35, b36, b37, b38, b39, b40, b41, b42, b43, b44, b45, b46, b47, b48, b49, b50, b51, b52, b53, b54, b55, b56, b57, b58, b59, b60, b61, b62, b63, b64;
     ImageButton borrar, avanzar, retroceder, grabar, enviar;
     TextView numAnim;
+    Animacion animacion;
+    int numeroPantalla;
+
+    int dataset[] = {3,6,12,24,48,96,192,96 , 6,12,24,48,96,192,96,48 ,
+        12,24,48,96,192,96,48,0 ,24,48,96,192,96,48,0,12 ,
+        48,96,192,96,48,0,12,6 ,96,192,96,48,0,12,6,3 ,
+        192,96,48,0,12,6,3,6 , 96,48,0,12,6,3,6,12 ,
+        48,0,12,6,3,6,12,24 , 0,12,6,3,6,12,24,48 ,
+        12,6,3,6,12,24,48,96 , 6,3,6,12,24,48,96,192 ,
+
+        192,96,48,0,12,6,3,6 , 96,48,0,12,6,3,6,12 ,
+        48,0,12,6,3,6,12,24 , 0,12,6,3,6,12,24,48 ,
+        12,6,3,6,12,24,48,96 , 6,3,6,12,24,48,96,192 ,
+        3,6,12,24,48,96,192,96 , 6,12,24,48,96,192,96,48 ,
+        12,24,48,96,192,96,48,0 , 24,48,96,192,96,48,0,12 ,
+        48,96,192,96,48,0,12,6 , 96,192,96,48,0,12,6,3 };
     
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         rootView = (ViewGroup)inflater.inflate(R.layout.page4, container, false);
+
+        animacion = new Animacion();
+        numeroPantalla = 0;
+
+
+        // TODO cargar del Shared Preferences si existe alguna animación guardada
+
         
         inicializarVistas();
+
+
+        dibujarPantalla(0);
         
         borrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +72,28 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
                 apagarBotones();
             }
         });
+
+        avanzar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                numeroPantalla ++;
+                if (numeroPantalla == 12) numeroPantalla = 0;
+                numAnim.setText((numeroPantalla + 1) + "");
+                dibujarPantalla(numeroPantalla);
+            }
+        });
+
+        retroceder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                numeroPantalla --;
+                if (numeroPantalla == -1) numeroPantalla = 11;
+                numAnim.setText((numeroPantalla + 1) + "");
+                dibujarPantalla(numeroPantalla);
+            }
+        });
+
+
 
 
         return rootView;
@@ -227,6 +278,7 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
             case "A":
                 v.setBackgroundColor(Color.RED);
                 v.setTag("R");
+                animacion.modificarLed(0, 0);
                 break;
             case "R":
                 v.setBackgroundColor(Color.GREEN);
@@ -381,4 +433,376 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
 
     }
 
+    public void dibujarPantalla(int pantalla) {
+
+        // cada pantalla son 16 enteros 8 para el rojo y 8 para el verde
+        int numeroLed = 0;
+
+        // cargar los datos de color rojo
+        for (int posicion = pantalla * 8; posicion < ((pantalla * 8) + 8); posicion++) {
+            // convertir en binario cada entero y mirar si es un 0 o 1 para poner el color que corresponda
+
+            for (int posicionBinario = 0; posicionBinario < 8; posicionBinario++) {
+
+                String numeroEnBinario = obtenerBinario(dataset[posicion]);
+                numeroLed++;
+
+
+                 if (numeroEnBinario.charAt(posicionBinario) == '1') {
+                     // Esta posición tiene el led rojo encendido
+                     pintarLed( numeroLed, 1);
+                 } else {
+                     pintarLed( numeroLed, 0);
+                 }
+            }
+        }
+
+        // cargar los datos de color verde
+        // Si se solapa alguno con el rojo detectarlo para pintar en color amarillo
+        numeroLed = 0;
+        // En este bucle vamos recuperando los valores
+        for (int posicion = ((pantalla * 8) + 96); posicion < ((pantalla * 8) + 104); posicion++) {
+
+            Log.d("Miapp" ,  " Numero en Binario: " + obtenerBinario(dataset[posicion]));
+
+            // convertir en binario cada entero y mirar si es un 0 o 1 para poner el color que corresponda
+            for (int posicionBinario = 0; posicionBinario < 8; posicionBinario++) {
+
+                String numeroEnBinario = obtenerBinario(dataset[posicion]);
+                numeroLed++;
+
+                if (numeroEnBinario.charAt(posicionBinario) == '1') {
+                    // Esta posición tiene el led rojo encendido
+                    pintarLed( numeroLed, 2);
+                }
+            }
+        }
+
+    }
+
+    private void pintarLed(int posicion, int color) {
+
+     //   apagarBotones();
+
+        int miColor = Color.TRANSPARENT;
+        String etiqueta = "";
+
+        switch (color) {
+            case 0:
+                miColor = Color.TRANSPARENT;
+                etiqueta = "A";
+                break;
+            case 1:
+                miColor = Color.RED;
+                etiqueta = "R";
+                break;
+            case 2:
+                miColor = Color.GREEN;
+                etiqueta = "G";
+                break;
+            case 3:
+                miColor = Color.YELLOW;
+                etiqueta = "Y";
+                break;
+        }
+
+
+        switch (posicion -1) {
+            case 0:
+                b1.setBackgroundColor(miColor);
+                b1.setTag(etiqueta);
+                break;
+            case 1:
+                b2.setBackgroundColor(miColor);
+                b2.setTag(etiqueta);
+                break;
+            case 2:
+                b3.setBackgroundColor(miColor);
+                b3.setTag(etiqueta);
+                break;
+            case 3:
+                b4.setBackgroundColor(miColor);
+                b4.setTag(etiqueta);
+                break;
+            case 4:
+                b5.setBackgroundColor(miColor);
+                b5.setTag(etiqueta);
+                break;
+            case 5:
+                b6.setBackgroundColor(miColor);
+                b6.setTag(etiqueta);
+                break;
+            case 6:
+                b7.setBackgroundColor(miColor);
+                b7.setTag(etiqueta);
+                break;
+            case 7:
+                b8.setBackgroundColor(miColor);
+                b8.setTag(etiqueta);
+                break;
+            case 8:
+                b9.setBackgroundColor(miColor);
+                b9.setTag(etiqueta);
+                break;
+            case 9:
+                b10.setBackgroundColor(miColor);
+                b10.setTag(etiqueta);
+                break;
+            case 10:
+                b11.setBackgroundColor(miColor);
+                b11.setTag(etiqueta);
+                break;
+            case 11:
+                b12.setBackgroundColor(miColor);
+                b12.setTag(etiqueta);
+                break;
+            case 12:
+                b13.setBackgroundColor(miColor);
+                b13.setTag(etiqueta);
+                break;
+            case 13:
+                b14.setBackgroundColor(miColor);
+                b14.setTag(etiqueta);
+                break;
+            case 14:
+                b15.setBackgroundColor(miColor);
+                b15.setTag(etiqueta);
+                break;
+            case 15:
+                b16.setBackgroundColor(miColor);
+                b16.setTag(etiqueta);
+                break;
+            case 16:
+                b17.setBackgroundColor(miColor);
+                b17.setTag(etiqueta);
+                break;
+            case 17:
+                b18.setBackgroundColor(miColor);
+                b18.setTag(etiqueta);
+                break;
+            case 18:
+                b19.setBackgroundColor(miColor);
+                b19.setTag(etiqueta);
+                break;
+            case 19:
+                b20.setBackgroundColor(miColor);
+                b20.setTag(etiqueta);
+                break;
+            case 20:
+                b21.setBackgroundColor(miColor);
+                b21.setTag(etiqueta);
+                break;
+            case 21:
+                b22.setBackgroundColor(miColor);
+                b22.setTag(etiqueta);
+                break;
+            case 22:
+                b23.setBackgroundColor(miColor);
+                b23.setTag(etiqueta);
+                break;
+            case 23:
+                b24.setBackgroundColor(miColor);
+                b24.setTag(etiqueta);
+                break;
+            case 24:
+                b25.setBackgroundColor(miColor);
+                b25.setTag(etiqueta);
+                break;
+            case 25:
+                b26.setBackgroundColor(miColor);
+                b26.setTag(etiqueta);
+                break;
+            case 26:
+                b27.setBackgroundColor(miColor);
+                b27.setTag(etiqueta);
+                break;
+            case 27:
+                b28.setBackgroundColor(miColor);
+                b28.setTag(etiqueta);
+                break;
+            case 28:
+                b29.setBackgroundColor(miColor);
+                b29.setTag(etiqueta);
+                break;
+            case 29:
+                b30.setBackgroundColor(miColor);
+                b30.setTag(etiqueta);
+                break;
+            case 30:
+                b31.setBackgroundColor(miColor);
+                b31.setTag(etiqueta);
+                break;
+
+            case 31:
+                b32.setBackgroundColor(miColor);
+                b32.setTag(etiqueta);
+                break;
+            case 32:
+                b33.setBackgroundColor(miColor);
+                b33.setTag(etiqueta);
+                break;
+            case 33:
+                b34.setBackgroundColor(miColor);
+                b34.setTag(etiqueta);
+                break;
+            case 34:
+                b35.setBackgroundColor(miColor);
+                b35.setTag(etiqueta);
+                break;
+            case 35:
+                b36.setBackgroundColor(miColor);
+                b36.setTag(etiqueta);
+                break;
+            case 36:
+                b37.setBackgroundColor(miColor);
+                b37.setTag(etiqueta);
+                break;
+            case 37:
+                b38.setBackgroundColor(miColor);
+                b38.setTag(etiqueta);
+                break;
+            case 38:
+                b39.setBackgroundColor(miColor);
+                b39.setTag(etiqueta);
+                break;
+            case 39:
+                b40.setBackgroundColor(miColor);
+                b40.setTag(etiqueta);
+                break;
+            case 40:
+                b41.setBackgroundColor(miColor);
+                b41.setTag(etiqueta);
+                break;
+
+            case 41:
+                b42.setBackgroundColor(miColor);
+                b42.setTag(etiqueta);
+                break;
+            case 42:
+                b43.setBackgroundColor(miColor);
+                b43.setTag(etiqueta);
+                break;
+            case 43:
+                b44.setBackgroundColor(miColor);
+                b44.setTag(etiqueta);
+                break;
+            case 44:
+                b45.setBackgroundColor(miColor);
+                b45.setTag(etiqueta);
+                break;
+            case 45:
+                b46.setBackgroundColor(miColor);
+                b46.setTag(etiqueta);
+                break;
+            case 46:
+                b47.setBackgroundColor(miColor);
+                b47.setTag(etiqueta);
+                break;
+            case 47:
+                b48.setBackgroundColor(miColor);
+                b48.setTag(etiqueta);
+                break;
+            case 48:
+                b49.setBackgroundColor(miColor);
+                b49.setTag(etiqueta);
+                break;
+            case 49:
+                b50.setBackgroundColor(miColor);
+                b50.setTag(etiqueta);
+                break;
+            case 50:
+                b51.setBackgroundColor(miColor);
+                b51.setTag(etiqueta);
+                break;
+
+            case 51:
+                b52.setBackgroundColor(miColor);
+                b52.setTag(etiqueta);
+                break;
+            case 52:
+                b53.setBackgroundColor(miColor);
+                b53.setTag(etiqueta);
+                break;
+            case 53:
+                b54.setBackgroundColor(miColor);
+                b54.setTag(etiqueta);
+                break;
+            case 54:
+                b55.setBackgroundColor(miColor);
+                b55.setTag(etiqueta);
+                break;
+            case 55:
+                b56.setBackgroundColor(miColor);
+                b56.setTag(etiqueta);
+                break;
+            case 56:
+                b57.setBackgroundColor(miColor);
+                b57.setTag(etiqueta);
+                break;
+            case 57:
+                b58.setBackgroundColor(miColor);
+                b58.setTag(etiqueta);
+                break;
+            case 58:
+                b59.setBackgroundColor(miColor);
+                b59.setTag(etiqueta);
+                break;
+            case 59:
+                b60.setBackgroundColor(miColor);
+                b60.setTag(etiqueta);
+                break;
+            case 60:
+                b61.setBackgroundColor(miColor);
+                b61.setTag(etiqueta);
+                break;
+
+            case 61:
+                b62.setBackgroundColor(miColor);
+                b62.setTag(etiqueta);
+                break;
+            case 62:
+                b63.setBackgroundColor(miColor);
+                b63.setTag(etiqueta);
+                break;
+            case 63:
+                b64.setBackgroundColor(miColor);
+                b64.setTag(etiqueta);
+                break;
+
+
+
+        }
+    }
+
+
+    public static String obtenerBinario(int numero){
+       // Log.d("Miapp", "Numero: " + numero);
+
+        ArrayList<String> binario = new ArrayList<String>();
+        int resto;
+        String binarioString = "";
+
+        do{
+            resto = numero%2;
+            numero = numero/2;
+            binario.add(0, Integer.toString(resto));
+        }while(numero > 2); //Haremos el bucle hasta que el cociente no se pueda dividir mas
+
+        binario.add(0, Integer.toString(numero)); //Cogeremos el ultimo cociente
+
+        //Cogemos cada uno de los elementos del ArrayList y los juntamos en un String
+        for(int i = 0; i < binario.size(); i++){
+            binarioString += binario.get(i);
+        }
+
+        int faltanNceros = 8 - binarioString.length();
+        if (faltanNceros > 0) {
+            for (int n = 0 ; n < faltanNceros; n++ ) {
+                binarioString = "0" + binarioString;
+            }
+        }
+
+      //  Log.d("Miapp",  " Binario: " + binarioString);
+        return binarioString;
+    }
 }
