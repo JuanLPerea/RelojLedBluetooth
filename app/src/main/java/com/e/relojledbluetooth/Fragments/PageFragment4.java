@@ -1,15 +1,23 @@
 package com.e.relojledbluetooth.Fragments;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
@@ -24,6 +32,7 @@ import com.e.relojledbluetooth.MainActivity;
 import com.e.relojledbluetooth.R;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class PageFragment4 extends Fragment implements View.OnClickListener {
@@ -38,6 +47,7 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
     Ajustes ajustes;
     int numeroPantalla;
     int dataset[];
+    int width, height;
 
     @Nullable
     @Override
@@ -82,8 +92,68 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
             }
         });
 
+        grabar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                menuAnimaciones();
+            }
+        });
+
         return rootView;
 
+    }
+
+    private void menuAnimaciones() {
+        PopupMenu popupMenu = new PopupMenu(getContext(), grabar);
+
+        popupMenu.getMenuInflater().inflate(R.menu.grabar_menu, popupMenu.getMenu());
+
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Log.d("Miapp" , "Click en " + item);
+                switch (item.getItemId()) {
+                    case R.id.cargar_anim:
+                        // Cargar una animación guardada --------------------------------------
+                        final Dialog cargarDialog = new Dialog(getContext());
+                        cargarDialog.setContentView(R.layout.cargar_dialog);
+
+                        ListView listView =cargarDialog.findViewById(R.id.lista_animacionesLV);
+
+                        final List<Animacion> animaciones = ajustes.getAnimaciones();
+                        List<String> nombresAnimaciones = new ArrayList<>();
+                        for (Animacion animaTMP : animaciones) {
+                            nombresAnimaciones.add(animaTMP.getNombre());
+                        }
+
+                        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_dropdown_item_1line, nombresAnimaciones);
+                        listView.setAdapter(dataAdapter);
+
+                        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                 dataset = animaciones.get(position).getLed();
+                                 cargarDialog.dismiss();
+                            }
+                        });
+
+                        cargarDialog.show();
+                        break;
+
+                // Guardar animación -------------------------------
+                    case R.id.guardar_anim:
+
+                        break;
+
+                // Borrar una animación -----------------------------
+                    case R.id.borrar_anim:
+                        break;
+                }
+                return false;
+            }
+        });
+
+        popupMenu.show();
     }
 
     private void cargarAjustes() {
@@ -106,11 +176,7 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
         Animacion animacion1 = new Animacion(dataset, "Segunda");
         listaAnimaciones.add(animacion1);
         ajustes.setAnimaciones(listaAnimaciones);
-        ajustes.setTocarHoras(true);
-        ajustes.setAlarma("12:30:00LMXJV");
-        ajustes.setBrillo(1);
-        ajustes.setModoReloj(1);
-        ajustes.setApagarEnSeg(0);
+
         GuardarSharedPrefs.guardarDatos(getContext(), ajustes);
 
     }
@@ -205,8 +271,8 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
 
         DisplayMetrics metrics = new DisplayMetrics();
         ((MainActivity) getActivity()).getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        int width = metrics.widthPixels - (metrics.widthPixels / 3); // ancho absoluto en pixels
-        int height = metrics.heightPixels - (metrics.heightPixels / 3); // alto absoluto en pixels
+         width = metrics.widthPixels - (metrics.widthPixels / 3); // ancho absoluto en pixels
+         height = metrics.heightPixels - (metrics.heightPixels / 3); // alto absoluto en pixels
 
         Log.d("Miapp", width + " x " + height);
 
@@ -287,13 +353,12 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-     //   Log.d("Miapp" ,  "Pulsado: " + v.getId());
+       Log.d("Miapp" ,  "Pulsado: " + v.getId());
 
         switch (v.getTag().toString()) {
             case "A":
                 v.setBackgroundColor(Color.RED);
                 v.setTag("R");
-                animacion.modificarLed(0, 0);
                 break;
             case "R":
                 v.setBackgroundColor(Color.GREEN);
@@ -310,6 +375,9 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
             default:
                 break;
         }
+
+        // Modificar el array de la animación en memoria
+        guardarPantalla(numeroPantalla);
 
 
     }
@@ -800,7 +868,7 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
     }
 
 
-    public static String obtenerBinario(int numero){
+    private String obtenerBinario(int numero){
        // Log.d("Miapp", "Numero: " + numero);
 
         ArrayList<String> binario = new ArrayList<String>();
@@ -830,21 +898,18 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
       //  Log.d("Miapp",  " Binario: " + binarioString);
         return binarioString;
     }
+
+    private void guardarPantalla(int numPant) {
+        /*
+         TODO traducir la pantalla actual a 8 binarios x 2 colores (rojo y verde)
+           convertir estos binarios a enteros
+           y guardar en el array de datos estos números en su posición
+        */
+
+    }
+
+
+
 }
 
 
-/*
-    int dataset[] = {3,6,12,24,48,96,192,96 , 6,12,24,48,96,192,96,48 ,
-        12,24,48,96,192,96,48,0 ,24,48,96,192,96,48,0,12 ,
-        48,96,192,96,48,0,12,6 ,96,192,96,48,0,12,6,3 ,
-        192,96,48,0,12,6,3,6 , 96,48,0,12,6,3,6,12 ,
-        48,0,12,6,3,6,12,24 , 0,12,6,3,6,12,24,48 ,
-        12,6,3,6,12,24,48,96 , 6,3,6,12,24,48,96,192 ,
-
-        192,96,48,0,12,6,3,6 , 96,48,0,12,6,3,6,12 ,
-        48,0,12,6,3,6,12,24 , 0,12,6,3,6,12,24,48 ,
-        12,6,3,6,12,24,48,96 , 6,3,6,12,24,48,96,192 ,
-        3,6,12,24,48,96,192,96 , 6,12,24,48,96,192,96,48 ,
-        12,24,48,96,192,96,48,0 , 24,48,96,192,96,48,0,12 ,
-        48,96,192,96,48,0,12,6 , 96,192,96,48,0,12,6,3 };
-    */

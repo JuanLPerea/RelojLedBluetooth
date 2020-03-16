@@ -8,9 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-
 public class GuardarSharedPrefs {
-
 
     public static Ajustes cargarDatos(Context context) {
 
@@ -45,19 +43,40 @@ public class GuardarSharedPrefs {
             List<String> listaDatos = new ArrayList<>();
             int[] valoresAnimacion = new int[192];
 
-            for (String stringTMP : listaStringsAnimaciones) {
-                listaDatos = Arrays.asList(stringTMP.split("\\s*,\\s*"));
-                animacionTMP.setNombre(listaDatos.get(0));
-                // Empezamos en la posición 1 del array que es el primer dato, quitamos 1 en el indice para compensar que el primer dato es el nombre
-                for (int posicion = 1; posicion < listaDatos.size() ; posicion++) {
-                    valoresAnimacion[posicion-1] = Integer.parseInt(listaDatos.get(posicion));
+            if (listaStringsAnimaciones.size() > 1) {
+                for (String stringTMP : listaStringsAnimaciones) {
+                    listaDatos = Arrays.asList(stringTMP.split("\\s*,\\s*"));
+                    animacionTMP.setNombre(listaDatos.get(0));
+                    // Empezamos en la posición 1 del array que es el primer dato, quitamos 1 en el indice para compensar que el primer dato es el nombre
+                    for (int posicion = 1; posicion < listaDatos.size() ; posicion++) {
+                        valoresAnimacion[posicion-1] = Integer.parseInt(listaDatos.get(posicion));
+                    }
+                    animacionTMP.setLed(valoresAnimacion);
+                    animacionTMP.setEsNuevo(false);
+                    listaAnimaciones.add(animacionTMP);
                 }
-                animacionTMP.setLed(valoresAnimacion);
+
+                ajustesGuardados.setAnimaciones(listaAnimaciones);
+            } else {
+                animacionTMP.setNombre("Original");
+                int dataset[] = {3,6,12,24,48,96,192,96 , 6,12,24,48,96,192,96,48 ,
+                        12,24,48,96,192,96,48,0 ,24,48,96,192,96,48,0,12 ,
+                        48,96,192,96,48,0,12,6 ,96,192,96,48,0,12,6,3 ,
+                        192,96,48,0,12,6,3,6 , 96,48,0,12,6,3,6,12 ,
+                        48,0,12,6,3,6,12,24 , 0,12,6,3,6,12,24,48 ,
+                        12,6,3,6,12,24,48,96 , 6,3,6,12,24,48,96,192 ,
+                        192,96,48,0,12,6,3,6 , 96,48,0,12,6,3,6,12 ,
+                        48,0,12,6,3,6,12,24 , 0,12,6,3,6,12,24,48 ,
+                        12,6,3,6,12,24,48,96 , 6,3,6,12,24,48,96,192 ,
+                        3,6,12,24,48,96,192,96 , 6,12,24,48,96,192,96,48 ,
+                        12,24,48,96,192,96,48,0 , 24,48,96,192,96,48,0,12 ,
+                        48,96,192,96,48,0,12,6 , 96,192,96,48,0,12,6,3 };
+
+                animacionTMP.setLed( dataset);
                 animacionTMP.setEsNuevo(false);
                 listaAnimaciones.add(animacionTMP);
+                ajustesGuardados.setAnimaciones(listaAnimaciones);
             }
-
-            ajustesGuardados.setAnimaciones(listaAnimaciones);
 
         }
 
@@ -69,8 +88,8 @@ public class GuardarSharedPrefs {
         SharedPreferences.Editor editor = fichero.edit();
 
         editor.putInt("MODORELOJ", ajustes.getModoReloj());
-        editor.putInt("APAGARSEG", ajustes.getModoReloj());
-        editor.putInt("BRILLO", ajustes.getModoReloj());
+        editor.putInt("APAGARSEG", ajustes.getApagarEnSeg());
+        editor.putInt("BRILLO", ajustes.getBrillo());
         editor.putString("ALARMA", ajustes.getAlarma());
         editor.putBoolean("TOCARHORAS", ajustes.isTocarHoras());
 

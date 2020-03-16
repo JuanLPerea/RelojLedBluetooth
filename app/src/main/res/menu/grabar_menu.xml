@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/cargar_anim"
+        android:title="Cargar Animación" />
+    <item
+        android:id="@+id/guardar_anim"
+        android:title="Guardar Animación" />
+
+    <item
+        android:id="@+id/borrar_anim"
+        android:title="Borrar Animación" />
+</menu>

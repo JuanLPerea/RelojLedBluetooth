@@ -53,12 +53,12 @@ public class PageFragment1 extends Fragment {
         // Cargamos los ajustes del Shared Preferences
         cargarAjustes();
 
-
         // Listeners para los controles
         ponerEnHora.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ((MainActivity) getActivity()).enviarComandoBluetooth("#H#" + hora_txt);
+                guardarAjustes();
             }
         });
 
@@ -70,6 +70,7 @@ public class PageFragment1 extends Fragment {
                 if (tiempoApagar > 60) tiempoApagar = 0;
                 tiempoApagarTV.setText(tiempoApagar + " Seg.");
                 ((MainActivity) getActivity()).enviarComandoBluetooth("#A#" + tiempoApagar);
+                guardarAjustes();
             }
         });
 
@@ -81,6 +82,7 @@ public class PageFragment1 extends Fragment {
                 if (tiempoApagar < 0) tiempoApagar = 60;
                 tiempoApagarTV.setText(tiempoApagar + " Seg.");
                 ((MainActivity) getActivity()).enviarComandoBluetooth("#A#" + tiempoApagar);
+                guardarAjustes();
             }
         });
 
@@ -100,6 +102,7 @@ public class PageFragment1 extends Fragment {
                 brillo = (int) (brilloBar.getProgress()/ 6.66666666667);
                 ((MainActivity) getActivity()).enviarComandoBluetooth("#B#" + brillo);
                 Log.d("Miapp", brillo + "");
+                guardarAjustes();
             }
         });
 
@@ -190,7 +193,6 @@ public class PageFragment1 extends Fragment {
     public void onPause() {
         super.onPause();
         guardarAjustes();
-        Log.d("Miapp", "Fragment 1 pausado");
     }
 
 

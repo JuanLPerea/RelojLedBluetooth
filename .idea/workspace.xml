@@ -6,9 +6,9 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="Miapp" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="miapp" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f481de8e-d26c-462f-b46b-480557a796c8" name="Default Changelist" comment="" />
@@ -36,6 +36,8 @@
       <list>
         <option value="layoutResourceFile_vertical" />
         <option value="Class" />
+        <option value="resourceFile" />
+        <option value="layoutResourceFile" />
       </list>
     </option>
   </component>
@@ -46,8 +48,8 @@
   <component name="ProjectId" id="1YXTia6anAzLCUVnrZ3EKRYxSst" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
-    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="189840620304" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-02-22T11:27:12.029Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_2_API_28" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-03-16T17:29:59.380Z" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$PROJECT_DIR$/../AppData/Local/Android/Sdk" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../FichAPPActualizado" />
@@ -169,14 +171,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/e/relojledbluetooth/Fragments/PageFragment1.java</url>
-          <line>185</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/e/relojledbluetooth/Clases/GuardarSharedPrefs.java</url>
-          <line>70</line>
-          <option name="timeStamp" value="11" />
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/e/relojledbluetooth/Fragments/PageFragment3.java</url>
+          <line>189</line>
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
