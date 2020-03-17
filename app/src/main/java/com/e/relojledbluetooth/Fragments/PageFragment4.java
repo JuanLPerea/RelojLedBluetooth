@@ -33,6 +33,7 @@ import com.e.relojledbluetooth.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 public class PageFragment4 extends Fragment implements View.OnClickListener {
@@ -45,6 +46,7 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
     TextView numAnim;
     Animacion animacion;
     Ajustes ajustes;
+    TableLayout tableLayoutBase;
     int numeroPantalla;
     int dataset[];
     int width, height;
@@ -182,7 +184,9 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
     }
 
     private void inicializarVistas() {
-        
+
+        tableLayoutBase = rootView.findViewById(R.id.table_layout_base);
+
         borrar = rootView.findViewById(R.id.borrarBTN);
         avanzar = rootView.findViewById(R.id.avanzarBTN);
         retroceder = rootView.findViewById(R.id.retrocederBTN);
@@ -353,7 +357,7 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-       Log.d("Miapp" ,  "Pulsado: " + v.getId());
+      // Log.d("Miapp" ,  "Pulsado: " + v.getId());
 
         switch (v.getTag().toString()) {
             case "A":
@@ -377,7 +381,7 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
         }
 
         // Modificar el array de la animación en memoria
-        guardarPantalla(numeroPantalla);
+        guardarPantalla();
 
 
     }
@@ -899,13 +903,91 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
         return binarioString;
     }
 
-    private void guardarPantalla(int numPant) {
+    private void guardarPantalla() {
         /*
-         TODO traducir la pantalla actual a 8 binarios x 2 colores (rojo y verde)
+          Traducir la pantalla actual a 8 binarios x 2 colores (rojo y verde)
            convertir estos binarios a enteros
            y guardar en el array de datos estos números en su posición
         */
 
+          Log.d("Miapp",  "Guardar Pantalla");
+
+        // Recorrer todos los views hijos del table layout base
+        // Si la etiqueta tiene una "R" o una "Y": el led rojo está encendido
+        // Si la etiqueta tiene una "G" o una "Y": el led verde está apagado
+        // si la etiqueta es una "A" es que los leds están apagados.
+        ArrayList<View> vistas = tableLayoutBase.getTouchables();
+        Iterator<View> it = vistas.iterator();
+
+        String binarioRojoTXT = "";
+        String binarioVerdeTXT = "";
+
+        while (it.hasNext()){
+            View v = it.next();
+            if ((v instanceof Button)){
+                switch (v.getTag().toString()) {
+                    case "A":
+                        binarioRojoTXT = binarioRojoTXT + "0";
+                        binarioVerdeTXT = binarioVerdeTXT + "0";
+                        break;
+                    case "R":
+                        binarioRojoTXT = binarioRojoTXT + "1";
+                        binarioVerdeTXT = binarioVerdeTXT + "0";
+                        break;
+                    case "G":
+                        binarioRojoTXT = binarioRojoTXT + "0";
+                        binarioVerdeTXT = binarioVerdeTXT + "1";
+                        break;
+                    case "Y":
+                        binarioRojoTXT = binarioRojoTXT + "1";
+                        binarioVerdeTXT = binarioVerdeTXT + "1";
+                        break;
+                }
+            }
+        }
+
+        String fila1Roja = binarioRojoTXT.substring(0,8);
+        String fila2Roja = binarioRojoTXT.substring(8,16);
+        String fila3Roja = binarioRojoTXT.substring(16,24);
+        String fila4Roja = binarioRojoTXT.substring(24,32);
+        String fila5Roja = binarioRojoTXT.substring(32,40);
+        String fila6Roja = binarioRojoTXT.substring(40,48);
+        String fila7Roja = binarioRojoTXT.substring(48,56);
+        String fila8Roja = binarioRojoTXT.substring(56,64);
+
+        dataset[numeroPantalla * 8] = binarioAdecimal(fila1Roja);
+        dataset[(numeroPantalla * 8)+1] = binarioAdecimal(fila2Roja);
+        dataset[(numeroPantalla * 8)+2] = binarioAdecimal(fila3Roja);
+        dataset[(numeroPantalla * 8)+3] = binarioAdecimal(fila4Roja);
+        dataset[(numeroPantalla * 8)+4] = binarioAdecimal(fila5Roja);
+        dataset[(numeroPantalla * 8)+5] = binarioAdecimal(fila6Roja);
+        dataset[(numeroPantalla * 8)+6] = binarioAdecimal(fila7Roja);
+        dataset[(numeroPantalla * 8)+7] = binarioAdecimal(fila8Roja);
+
+        String fila1Verde = binarioVerdeTXT.substring(0,8);
+        String fila2Verde = binarioVerdeTXT.substring(8,16);
+        String fila3Verde = binarioVerdeTXT.substring(16,24);
+        String fila4Verde = binarioVerdeTXT.substring(24,32);
+        String fila5Verde = binarioVerdeTXT.substring(32,40);
+        String fila6Verde = binarioVerdeTXT.substring(40,48);
+        String fila7Verde = binarioVerdeTXT.substring(48,56);
+        String fila8Verde = binarioVerdeTXT.substring(56,64);
+
+        dataset[(numeroPantalla * 8) + 96] = binarioAdecimal(fila1Verde);
+        dataset[(numeroPantalla * 8)+97] = binarioAdecimal(fila2Verde);
+        dataset[(numeroPantalla * 8)+98] = binarioAdecimal(fila3Verde);
+        dataset[(numeroPantalla * 8)+99] = binarioAdecimal(fila4Verde);
+        dataset[(numeroPantalla * 8)+100] = binarioAdecimal(fila5Verde);
+        dataset[(numeroPantalla * 8)+101] = binarioAdecimal(fila6Verde);
+        dataset[(numeroPantalla * 8)+102] = binarioAdecimal(fila7Verde);
+        dataset[(numeroPantalla * 8)+103] = binarioAdecimal(fila8Verde);
+
+    }
+
+    private int binarioAdecimal(String binTXT) {
+        int decimal =  Integer.parseInt(binTXT, 2);
+
+        return decimal;
     }
 
 
@@ -913,3 +995,1033 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
 }
 
 
+/*
+
+
+
+        if(b1.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b1.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b1.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b1.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b2.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b2.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b2.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b2.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b3.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b3.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b3.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b3.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b4.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b4.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b4.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b4.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b5.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b5.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b5.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b5.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b6.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b6.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b6.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b6.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b7.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b7.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b7.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b7.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b8.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b8.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b8.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b8.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b9.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b9.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b9.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b9.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b10.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b10.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b10.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b10.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b11.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b11.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b11.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b11.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b12.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b12.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b12.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b12.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b13.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b13.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b13.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b13.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b14.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b14.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b14.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b14.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b15.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b15.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b15.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b15.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b16.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b16.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b16.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b16.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b17.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b17.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b17.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b17.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b18.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b18.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b18.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b18.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b19.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b19.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b19.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b19.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b20.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b20.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b20.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b20.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b21.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b21.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b21.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b21.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b22.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b22.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b22.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b22.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b23.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b23.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b23.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b23.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b24.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b24.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b24.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b24.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b25.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b25.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b25.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b25.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b26.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b26.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b26.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b26.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b27.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b27.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b27.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b27.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b28.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b28.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b28.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b28.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b29.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b29.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b29.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b29.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b30.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b30.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b30.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b30.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b31.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b31.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b31.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b31.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b32.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b32.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b32.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b32.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b33.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b33.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b33.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b33.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b34.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b34.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b34.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b34.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b35.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b35.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b35.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b35.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b36.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b36.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b36.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b36.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b37.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b37.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b37.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b37.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b38.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b38.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b38.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b38.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b39.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b39.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b39.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b39.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b40.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b40.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b40.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b40.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b41.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b41.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b41.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b41.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b42.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b42.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b42.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b42.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b43.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b43.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b43.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b43.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b44.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b44.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b44.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b44.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b45.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b45.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b45.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b45.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b46.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b46.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b46.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b46.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b47.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b47.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b47.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b47.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b48.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b48.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b48.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b48.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b49.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b49.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b49.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b49.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b50.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b50.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b50.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b50.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b51.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b51.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b51.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b51.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b52.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b52.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b52.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b52.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b53.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b53.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b53.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b53.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b54.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b54.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b54.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b54.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b55.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b55.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b55.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b55.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b56.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b56.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b56.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b56.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b57.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b57.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b57.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b57.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b58.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b58.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b58.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b58.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b59.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b59.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b59.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b59.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b60.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b60.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b60.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b60.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b61.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b61.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b61.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b61.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b62.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b62.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b62.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b62.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b63.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b63.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b63.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b63.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+        if(b64.getTag().equals("A")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "0";
+        }
+        if(b64.getTag().equals("R")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "0";
+        }
+        if(b64.getTag().equals("G")) {
+            binarioRojoTXT += "0";
+            binarioVerdeTXT += "1";
+        }
+        if(b64.getTag().equals("Y")) {
+            binarioRojoTXT += "1";
+            binarioVerdeTXT += "1";
+        }
+
+ */
