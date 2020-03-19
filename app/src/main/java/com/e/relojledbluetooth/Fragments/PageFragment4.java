@@ -65,7 +65,7 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
 
         inicializarVistas();
 
-        dibujarPantalla(0);
+        dibujarPantalla();
         
         borrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,7 +80,8 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
                 numeroPantalla ++;
                 if (numeroPantalla == 12) numeroPantalla = 0;
                 numAnim.setText((numeroPantalla + 1) + "");
-                dibujarPantalla(numeroPantalla);
+                dibujarPantalla();
+                Log.d("Miapp", "Dataset " + dataset[numeroPantalla * 8] + "," + dataset[(numeroPantalla*8)+1] + "," + dataset[(numeroPantalla*8)+2]+ "," + dataset[(numeroPantalla*8)+3]+ "," + dataset[(numeroPantalla*8)+4]+ "," + dataset[(numeroPantalla*8)+5]+ "," + dataset[(numeroPantalla*8)+6]+ "," + dataset[(numeroPantalla*8)+7]);
             }
         });
 
@@ -90,7 +91,8 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
                 numeroPantalla --;
                 if (numeroPantalla == -1) numeroPantalla = 11;
                 numAnim.setText((numeroPantalla + 1) + "");
-                dibujarPantalla(numeroPantalla);
+                dibujarPantalla();
+                Log.d("Miapp", "Dataset " + dataset[numeroPantalla * 8] + "," + dataset[(numeroPantalla*8)+1] + "," + dataset[(numeroPantalla*8)+2]+ "," + dataset[(numeroPantalla*8)+3]+ "," + dataset[(numeroPantalla*8)+4]+ "," + dataset[(numeroPantalla*8)+5]+ "," + dataset[(numeroPantalla*8)+6]+ "," + dataset[(numeroPantalla*8)+7]);
             }
         });
 
@@ -113,7 +115,7 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                Log.d("Miapp" , "Click en " + item);
+         //       Log.d("Miapp" , "Click en " + item);
                 switch (item.getItemId()) {
                     case R.id.cargar_anim:
                         // Cargar una animación guardada --------------------------------------
@@ -134,7 +136,12 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
                         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                 dataset = animaciones.get(position).getLed();
+                                ajustes = GuardarSharedPrefs.cargarDatos(getContext());
+                                dataset = ajustes.getAnimaciones().get(position).getLed();
+                                 numeroPantalla = 0;
+                                 numAnim.setText((numeroPantalla + 1)+ "");
+                                 dibujarPantalla();
+                                 Log.d("Miapp" , "Cargado dataset");
                                  cargarDialog.dismiss();
                             }
                         });
@@ -380,7 +387,7 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
                 break;
         }
 
-        // Modificar el array de la animación en memoria
+        // Guardar en memoria
         guardarPantalla();
 
 
@@ -518,24 +525,37 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
         b63.setTag("A");
         b64.setTag("A");
 
+        int posicion = numeroPantalla * 8;
+        for (int n = posicion ; n < (posicion + 8) ; n++) {
+            dataset[n] = 0;
+            dataset[n+96] = 0;
+        }
+
     }
 
-    public void dibujarPantalla(int pantalla) {
+    private void dibujarFila(String filabin) {
+
+    }
+
+    public void dibujarPantalla() {
+
+        int inicio = numeroPantalla * 8;
 
         // cada pantalla son 16 enteros 8 para el rojo y 8 para el verde
         int numeroLed = 0;
         int matriztemporal[] = new int[65];
 
         // cargar los datos de color rojo
-        for (int posicion = pantalla * 8; posicion < ((pantalla * 8) + 8); posicion++) {
+
+        Log.d("Miapp", "Dataset dibujar: " + dataset[numeroPantalla * 8] + "," + dataset[(numeroPantalla*8)+1] + "," + dataset[(numeroPantalla*8)+2]+ "," + dataset[(numeroPantalla*8)+3]+ "," + dataset[(numeroPantalla*8)+4]+ "," + dataset[(numeroPantalla*8)+5]+ "," + dataset[(numeroPantalla*8)+6]+ "," + dataset[(numeroPantalla*8)+7]);
+
+        for (int posicion = inicio; posicion < (inicio + 8); posicion++) {
             // convertir en binario cada entero y mirar si es un 0 o 1 para poner el color que corresponda
+            String numeroEnBinario = obtenerBinario(dataset[posicion]);
+            Log.d("Miapp" , "Numero binario dibujar: " + numeroEnBinario);
 
             for (int posicionBinario = 0; posicionBinario < 8; posicionBinario++) {
-
-                String numeroEnBinario = obtenerBinario(dataset[posicion]);
                 numeroLed++;
-
-
                  if (numeroEnBinario.charAt(posicionBinario) == '1') {
                      // Esta posición tiene el led rojo encendido
                      pintarLed( numeroLed, 1);
@@ -544,6 +564,7 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
                      pintarLed( numeroLed, 0);
                      matriztemporal[numeroLed] = 0;
                  }
+
             }
         }
 
@@ -551,7 +572,7 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
         // Si se solapa alguno con el rojo detectarlo para pintar en color amarillo
         numeroLed = 0;
         // En este bucle vamos recuperando los valores
-        for (int posicion = ((pantalla * 8) + 96); posicion < ((pantalla * 8) + 104); posicion++) {
+        for (int posicion = ((numeroPantalla * 8) + 96); posicion < ((numeroPantalla * 8) + 104); posicion++) {
 
         //    Log.d("Miapp" ,  " Numero en Binario: " + obtenerBinario(dataset[posicion]));
 
@@ -559,6 +580,7 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
             for (int posicionBinario = 0; posicionBinario < 8; posicionBinario++) {
 
                 String numeroEnBinario = obtenerBinario(dataset[posicion]);
+
                 numeroLed++;
 
                 if (numeroEnBinario.charAt(posicionBinario) == '1') {
@@ -577,6 +599,7 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
                 }
             }
         }
+
     }
 
     private void pintarLed(int posicion, int color) {
@@ -866,38 +889,32 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
                 b64.setTag(etiqueta);
                 break;
 
-
-
         }
     }
 
-
     private String obtenerBinario(int numero){
        // Log.d("Miapp", "Numero: " + numero);
-
-        ArrayList<String> binario = new ArrayList<String>();
-        int resto;
         String binarioString = "";
 
-        do{
-            resto = numero%2;
-            numero = numero/2;
-            binario.add(0, Integer.toString(resto));
-        }while(numero > 2); //Haremos el bucle hasta que el cociente no se pueda dividir mas
-
-        binario.add(0, Integer.toString(numero)); //Cogeremos el ultimo cociente
-
-        //Cogemos cada uno de los elementos del ArrayList y los juntamos en un String
-        for(int i = 0; i < binario.size(); i++){
-            binarioString += binario.get(i);
+        if (numero <= 0) {
+            return "00000000";
         }
+        StringBuilder binario = new StringBuilder();
+        while (numero > 0) {
+            short residuo = (short) (numero % 2);
+            numero = numero / 2;
+            // Insertar el dígito al inicio de la cadena
+            binario.insert(0, String.valueOf(residuo));
+        }
+        binarioString = binario.toString();
 
         int faltanNceros = 8 - binarioString.length();
-        if (faltanNceros > 0) {
+        if (faltanNceros >= 0) {
             for (int n = 0 ; n < faltanNceros; n++ ) {
                 binarioString = "0" + binarioString;
             }
         }
+
 
       //  Log.d("Miapp",  " Binario: " + binarioString);
         return binarioString;
@@ -909,12 +926,9 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
            convertir estos binarios a enteros
            y guardar en el array de datos estos números en su posición
         */
-
-          Log.d("Miapp",  "Guardar Pantalla");
-
         // Recorrer todos los views hijos del table layout base
         // Si la etiqueta tiene una "R" o una "Y": el led rojo está encendido
-        // Si la etiqueta tiene una "G" o una "Y": el led verde está apagado
+        // Si la etiqueta tiene una "G" o una "Y": el led verde está encendido
         // si la etiqueta es una "A" es que los leds están apagados.
         ArrayList<View> vistas = tableLayoutBase.getTouchables();
         Iterator<View> it = vistas.iterator();
@@ -942,9 +956,13 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
                         binarioRojoTXT = binarioRojoTXT + "1";
                         binarioVerdeTXT = binarioVerdeTXT + "1";
                         break;
+                    default:
+                        Log.d("Miapp", "No debería pasar esto");
+                        break;
                 }
             }
         }
+
 
         String fila1Roja = binarioRojoTXT.substring(0,8);
         String fila2Roja = binarioRojoTXT.substring(8,16);
@@ -964,6 +982,8 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
         dataset[(numeroPantalla * 8)+6] = binarioAdecimal(fila7Roja);
         dataset[(numeroPantalla * 8)+7] = binarioAdecimal(fila8Roja);
 
+        Log.d("Miapp", "Dataset " + dataset[numeroPantalla * 8] + "," + dataset[(numeroPantalla*8)+1] + "," + dataset[(numeroPantalla*8)+2]+ "," + dataset[(numeroPantalla*8)+3]+ "," + dataset[(numeroPantalla*8)+4]+ "," + dataset[(numeroPantalla*8)+5]+ "," + dataset[(numeroPantalla*8)+6]+ "," + dataset[(numeroPantalla*8)+7]);
+
         String fila1Verde = binarioVerdeTXT.substring(0,8);
         String fila2Verde = binarioVerdeTXT.substring(8,16);
         String fila3Verde = binarioVerdeTXT.substring(16,24);
@@ -974,19 +994,18 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
         String fila8Verde = binarioVerdeTXT.substring(56,64);
 
         dataset[(numeroPantalla * 8) + 96] = binarioAdecimal(fila1Verde);
-        dataset[(numeroPantalla * 8)+97] = binarioAdecimal(fila2Verde);
-        dataset[(numeroPantalla * 8)+98] = binarioAdecimal(fila3Verde);
-        dataset[(numeroPantalla * 8)+99] = binarioAdecimal(fila4Verde);
-        dataset[(numeroPantalla * 8)+100] = binarioAdecimal(fila5Verde);
-        dataset[(numeroPantalla * 8)+101] = binarioAdecimal(fila6Verde);
-        dataset[(numeroPantalla * 8)+102] = binarioAdecimal(fila7Verde);
-        dataset[(numeroPantalla * 8)+103] = binarioAdecimal(fila8Verde);
+        dataset[(numeroPantalla * 8) + 97] = binarioAdecimal(fila2Verde);
+        dataset[(numeroPantalla * 8) + 98] = binarioAdecimal(fila3Verde);
+        dataset[(numeroPantalla * 8) + 99] = binarioAdecimal(fila4Verde);
+        dataset[(numeroPantalla * 8) + 100] = binarioAdecimal(fila5Verde);
+        dataset[(numeroPantalla * 8) + 101] = binarioAdecimal(fila6Verde);
+        dataset[(numeroPantalla * 8) + 102] = binarioAdecimal(fila7Verde);
+        dataset[(numeroPantalla * 8) + 103] = binarioAdecimal(fila8Verde);
 
     }
 
     private int binarioAdecimal(String binTXT) {
         int decimal =  Integer.parseInt(binTXT, 2);
-
         return decimal;
     }
 

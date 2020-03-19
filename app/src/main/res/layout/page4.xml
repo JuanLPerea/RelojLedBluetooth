@@ -747,14 +747,12 @@
             android:id="@+id/retrocederBTN"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
             app:srcCompat="@android:drawable/ic_media_rew" />
 
         <TextView
             android:id="@+id/num_animTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
             android:gravity="center_horizontal"
             android:text="1"
             android:textColor="@android:color/background_light"
@@ -764,7 +762,6 @@
             android:id="@+id/avanzarBTN"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
             app:srcCompat="@android:drawable/ic_media_ff" />
 
         <Space
@@ -775,19 +772,31 @@
             android:id="@+id/borrarBTN"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@android:drawable/ic_notification_clear_all" />
+            app:srcCompat="@drawable/borrar" />
+
+        <ImageButton
+            android:id="@+id/copiarBTN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/copiar" />
+
+        <ImageButton
+            android:id="@+id/pegarBTN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/pegar" />
 
         <ImageButton
             android:id="@+id/grabarBTN"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@android:drawable/ic_menu_save" />
+            app:srcCompat="@drawable/grabar" />
 
         <ImageButton
             android:id="@+id/enviarBTN"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@android:drawable/ic_menu_send" />
+            app:srcCompat="@drawable/enviar" />
     </LinearLayout>
 
 
