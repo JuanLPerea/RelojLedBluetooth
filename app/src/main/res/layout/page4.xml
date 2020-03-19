@@ -740,62 +740,72 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
+        android:gravity="center_horizontal|center_vertical"
         android:orientation="horizontal">
 
         <ImageButton
             android:id="@+id/retrocederBTN"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:srcCompat="@android:drawable/ic_media_rew" />
+            android:layout_weight="1"
+            app:srcCompat="@drawable/retroceder" />
 
         <TextView
             android:id="@+id/num_animTV"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="0.5"
             android:gravity="center_horizontal"
             android:text="1"
-            android:textColor="@android:color/background_light"
-            android:textSize="30sp" />
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp"
+            app:autoSizeTextType="none" />
 
         <ImageButton
             android:id="@+id/avanzarBTN"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:srcCompat="@android:drawable/ic_media_ff" />
+            android:layout_weight="1"
+            app:srcCompat="@drawable/avanzar" />
 
         <Space
-            android:layout_width="10dp"
-            android:layout_height="wrap_content" />
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1" />
 
         <ImageButton
             android:id="@+id/borrarBTN"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             app:srcCompat="@drawable/borrar" />
 
         <ImageButton
             android:id="@+id/copiarBTN"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             app:srcCompat="@drawable/copiar" />
 
         <ImageButton
             android:id="@+id/pegarBTN"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             app:srcCompat="@drawable/pegar" />
 
         <ImageButton
             android:id="@+id/grabarBTN"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             app:srcCompat="@drawable/grabar" />
 
         <ImageButton
             android:id="@+id/enviarBTN"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             app:srcCompat="@drawable/enviar" />
     </LinearLayout>
 

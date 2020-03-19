@@ -38,14 +38,16 @@ public class GuardarSharedPrefs {
             // Haciendo un split en cada elemento de la lista anterior
             // el primer elemento es el nombre de la animación
             // los datos están separados por comas ',' los separamos mediante otro split
-            Animacion animacionTMP = new Animacion();
+            Animacion animacionTMP = null;
             List<Animacion> listaAnimaciones = new ArrayList<>();
-            List<String> listaDatos = new ArrayList<>();
+            List<String> listaDatos = null;
             int[] valoresAnimacion = new int[192];
 
             if (listaStringsAnimaciones.size() > 1) {
-                for (String stringTMP : listaStringsAnimaciones) {
-                    listaDatos = Arrays.asList(stringTMP.split("\\s*,\\s*"));
+                for (String stringAnimTMP : listaStringsAnimaciones) {
+                    listaDatos = new ArrayList<>();
+                    listaDatos = Arrays.asList(stringAnimTMP.split("\\s*,\\s*"));
+                    animacionTMP = new Animacion();
                     animacionTMP.setNombre(listaDatos.get(0));
                     // Empezamos en la posición 1 del array que es el primer dato, quitamos 1 en el indice para compensar que el primer dato es el nombre
                     for (int posicion = 1; posicion < listaDatos.size() ; posicion++) {
@@ -58,6 +60,7 @@ public class GuardarSharedPrefs {
 
                 ajustesGuardados.setAnimaciones(listaAnimaciones);
             } else {
+                animacionTMP = new Animacion();
                 animacionTMP.setNombre("Original");
                 int dataset[] = {3,6,12,24,48,96,192,96 , 6,12,24,48,96,192,96,48 ,
                         12,24,48,96,192,96,48,0 ,24,48,96,192,96,48,0,12 ,

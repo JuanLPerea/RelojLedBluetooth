@@ -14,12 +14,14 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.TableLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -42,13 +44,13 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
     TableLayout table_base;
     LinearLayout row1, row2, row3, row4, row5, row6, row7, row8;
     Button b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12, b13, b14, b15, b16, b17, b18, b19, b20, b21, b22, b23, b24, b25, b26, b27, b28, b29, b30, b31, b32, b33, b34, b35, b36, b37, b38, b39, b40, b41, b42, b43, b44, b45, b46, b47, b48, b49, b50, b51, b52, b53, b54, b55, b56, b57, b58, b59, b60, b61, b62, b63, b64;
-    ImageButton borrar, avanzar, retroceder, grabar, enviar;
+    ImageButton borrar, avanzar, retroceder, grabar, enviar, copiar, pegar;
     TextView numAnim;
-    Animacion animacion;
     Ajustes ajustes;
     TableLayout tableLayoutBase;
     int numeroPantalla;
     int dataset[];
+    int portapapeles[];
     int width, height;
 
     @Nullable
@@ -57,7 +59,6 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
 
         rootView = (ViewGroup)inflater.inflate(R.layout.page4, container, false);
 
-        animacion = new Animacion();
         numeroPantalla = 0;
 
         // Cargar del Shared Preferences si existe alguna animación guardada y de paso todos los ajustes de la aplicación
@@ -81,7 +82,7 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
                 if (numeroPantalla == 12) numeroPantalla = 0;
                 numAnim.setText((numeroPantalla + 1) + "");
                 dibujarPantalla();
-                Log.d("Miapp", "Dataset " + dataset[numeroPantalla * 8] + "," + dataset[(numeroPantalla*8)+1] + "," + dataset[(numeroPantalla*8)+2]+ "," + dataset[(numeroPantalla*8)+3]+ "," + dataset[(numeroPantalla*8)+4]+ "," + dataset[(numeroPantalla*8)+5]+ "," + dataset[(numeroPantalla*8)+6]+ "," + dataset[(numeroPantalla*8)+7]);
+                // Log.d("Miapp", "Dataset " + dataset[numeroPantalla * 8] + "," + dataset[(numeroPantalla*8)+1] + "," + dataset[(numeroPantalla*8)+2]+ "," + dataset[(numeroPantalla*8)+3]+ "," + dataset[(numeroPantalla*8)+4]+ "," + dataset[(numeroPantalla*8)+5]+ "," + dataset[(numeroPantalla*8)+6]+ "," + dataset[(numeroPantalla*8)+7]);
             }
         });
 
@@ -92,7 +93,7 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
                 if (numeroPantalla == -1) numeroPantalla = 11;
                 numAnim.setText((numeroPantalla + 1) + "");
                 dibujarPantalla();
-                Log.d("Miapp", "Dataset " + dataset[numeroPantalla * 8] + "," + dataset[(numeroPantalla*8)+1] + "," + dataset[(numeroPantalla*8)+2]+ "," + dataset[(numeroPantalla*8)+3]+ "," + dataset[(numeroPantalla*8)+4]+ "," + dataset[(numeroPantalla*8)+5]+ "," + dataset[(numeroPantalla*8)+6]+ "," + dataset[(numeroPantalla*8)+7]);
+                // Log.d("Miapp", "Dataset " + dataset[numeroPantalla * 8] + "," + dataset[(numeroPantalla*8)+1] + "," + dataset[(numeroPantalla*8)+2]+ "," + dataset[(numeroPantalla*8)+3]+ "," + dataset[(numeroPantalla*8)+4]+ "," + dataset[(numeroPantalla*8)+5]+ "," + dataset[(numeroPantalla*8)+6]+ "," + dataset[(numeroPantalla*8)+7]);
             }
         });
 
@@ -100,6 +101,29 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 menuAnimaciones();
+            }
+        });
+
+        copiar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                portapapeles = new int[16];
+                for (int n=0; n<8 ; n++) {
+                    portapapeles[n] = dataset[(numeroPantalla * 8) + n];
+                    portapapeles[n+8] = dataset[(numeroPantalla * 8) + n + 96];
+                    dibujarPantalla();
+                }
+            }
+        });
+
+        pegar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (int n=0; n<8 ; n++) {
+                     dataset[(numeroPantalla * 8) + n] = portapapeles[n];
+                     dataset[(numeroPantalla * 8) + n + 96 ] = portapapeles[n+8];
+                     dibujarPantalla();
+                }
             }
         });
 
@@ -115,7 +139,7 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-         //       Log.d("Miapp" , "Click en " + item);
+         //       // Log.d("Miapp" , "Click en " + item);
                 switch (item.getItemId()) {
                     case R.id.cargar_anim:
                         // Cargar una animación guardada --------------------------------------
@@ -141,7 +165,7 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
                                  numeroPantalla = 0;
                                  numAnim.setText((numeroPantalla + 1)+ "");
                                  dibujarPantalla();
-                                 Log.d("Miapp" , "Cargado dataset");
+                                  Log.d("Miapp" , "Cargado dataset " + position);
                                  cargarDialog.dismiss();
                             }
                         });
@@ -151,7 +175,24 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
 
                 // Guardar animación -------------------------------
                     case R.id.guardar_anim:
+                        final Dialog guardarDialog = new Dialog(getContext());
+                        guardarDialog.setContentView(R.layout.grabar_dialog);
 
+                        final EditText nombreAnimET = guardarDialog.findViewById(R.id.nombre_animET);
+                        Button guardarAnimBTN = guardarDialog.findViewById(R.id.boton_grabar_animacionBTN);
+
+                        guardarAnimBTN.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                if (!nombreAnimET.getText().toString().equals("")) {
+                                    guardarAjustes(nombreAnimET.getText().toString());
+                                    guardarDialog.dismiss();
+                                } else {
+                                    Toast.makeText(getContext(), "Escribre algún nombre", Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
+                        guardarDialog.show();
                         break;
 
                 // Borrar una animación -----------------------------
@@ -169,23 +210,20 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
         ajustes = GuardarSharedPrefs.cargarDatos(getContext());
         if (ajustes == null) {
             ajustes = new Ajustes();
-            Log.d("Miapp", "Ajustes creados");
+            // Log.d("Miapp", "Ajustes creados");
         } else {
             // Por defecto cargamos la primera animación que haya guardada
             dataset = ajustes.getAnimaciones().get(0).getLed();
-            Log.d("Miapp", "Ajustes cargados");
+            // Log.d("Miapp", "Ajustes cargados");
         }
     }
 
-    private void guardarAjustes() {
-
-        animacion = new Animacion(dataset , "Original");
-        List listaAnimaciones = new ArrayList<>();
+    private void guardarAjustes(String nombreArchivo) {
+        Animacion animacion = new Animacion(dataset , nombreArchivo);
+        ajustes = GuardarSharedPrefs.cargarDatos(getContext());
+        List<Animacion> listaAnimaciones = ajustes.getAnimaciones();
         listaAnimaciones.add(animacion);
-        Animacion animacion1 = new Animacion(dataset, "Segunda");
-        listaAnimaciones.add(animacion1);
         ajustes.setAnimaciones(listaAnimaciones);
-
         GuardarSharedPrefs.guardarDatos(getContext(), ajustes);
 
     }
@@ -199,6 +237,8 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
         retroceder = rootView.findViewById(R.id.retrocederBTN);
         grabar = rootView.findViewById(R.id.grabarBTN);
         enviar = rootView.findViewById(R.id.enviarBTN);
+        copiar = rootView.findViewById(R.id.copiarBTN);
+        pegar = rootView.findViewById(R.id.pegarBTN);
         
         numAnim = rootView.findViewById(R.id.num_animTV);
         
@@ -285,7 +325,7 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
          width = metrics.widthPixels - (metrics.widthPixels / 3); // ancho absoluto en pixels
          height = metrics.heightPixels - (metrics.heightPixels / 3); // alto absoluto en pixels
 
-        Log.d("Miapp", width + " x " + height);
+        // Log.d("Miapp", width + " x " + height);
 
         ViewGroup.LayoutParams params = table_base.getLayoutParams();
         // Changes the height and width to the specified *pixels*
@@ -364,7 +404,7 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-      // Log.d("Miapp" ,  "Pulsado: " + v.getId());
+      // // Log.d("Miapp" ,  "Pulsado: " + v.getId());
 
         switch (v.getTag().toString()) {
             case "A":
@@ -390,10 +430,8 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
         // Guardar en memoria
         guardarPantalla();
 
-
     }
 
-    
     public void apagarBotones(){
         b1.setBackgroundColor(Color.TRANSPARENT);
         b2.setBackgroundColor(Color.TRANSPARENT);
@@ -533,10 +571,6 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
 
     }
 
-    private void dibujarFila(String filabin) {
-
-    }
-
     public void dibujarPantalla() {
 
         int inicio = numeroPantalla * 8;
@@ -547,12 +581,12 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
 
         // cargar los datos de color rojo
 
-        Log.d("Miapp", "Dataset dibujar: " + dataset[numeroPantalla * 8] + "," + dataset[(numeroPantalla*8)+1] + "," + dataset[(numeroPantalla*8)+2]+ "," + dataset[(numeroPantalla*8)+3]+ "," + dataset[(numeroPantalla*8)+4]+ "," + dataset[(numeroPantalla*8)+5]+ "," + dataset[(numeroPantalla*8)+6]+ "," + dataset[(numeroPantalla*8)+7]);
+        // Log.d("Miapp", "Dataset dibujar: " + dataset[numeroPantalla * 8] + "," + dataset[(numeroPantalla*8)+1] + "," + dataset[(numeroPantalla*8)+2]+ "," + dataset[(numeroPantalla*8)+3]+ "," + dataset[(numeroPantalla*8)+4]+ "," + dataset[(numeroPantalla*8)+5]+ "," + dataset[(numeroPantalla*8)+6]+ "," + dataset[(numeroPantalla*8)+7]);
 
         for (int posicion = inicio; posicion < (inicio + 8); posicion++) {
             // convertir en binario cada entero y mirar si es un 0 o 1 para poner el color que corresponda
             String numeroEnBinario = obtenerBinario(dataset[posicion]);
-            Log.d("Miapp" , "Numero binario dibujar: " + numeroEnBinario);
+            // Log.d("Miapp" , "Numero binario dibujar: " + numeroEnBinario);
 
             for (int posicionBinario = 0; posicionBinario < 8; posicionBinario++) {
                 numeroLed++;
@@ -574,7 +608,7 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
         // En este bucle vamos recuperando los valores
         for (int posicion = ((numeroPantalla * 8) + 96); posicion < ((numeroPantalla * 8) + 104); posicion++) {
 
-        //    Log.d("Miapp" ,  " Numero en Binario: " + obtenerBinario(dataset[posicion]));
+        //    // Log.d("Miapp" ,  " Numero en Binario: " + obtenerBinario(dataset[posicion]));
 
             // convertir en binario cada entero y mirar si es un 0 o 1 para poner el color que corresponda
             for (int posicionBinario = 0; posicionBinario < 8; posicionBinario++) {
@@ -893,7 +927,7 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
     }
 
     private String obtenerBinario(int numero){
-       // Log.d("Miapp", "Numero: " + numero);
+       // // Log.d("Miapp", "Numero: " + numero);
         String binarioString = "";
 
         if (numero <= 0) {
@@ -916,7 +950,7 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
         }
 
 
-      //  Log.d("Miapp",  " Binario: " + binarioString);
+      //  // Log.d("Miapp",  " Binario: " + binarioString);
         return binarioString;
     }
 
@@ -957,7 +991,7 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
                         binarioVerdeTXT = binarioVerdeTXT + "1";
                         break;
                     default:
-                        Log.d("Miapp", "No debería pasar esto");
+                        // Log.d("Miapp", "No debería pasar esto");
                         break;
                 }
             }
@@ -982,7 +1016,7 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
         dataset[(numeroPantalla * 8)+6] = binarioAdecimal(fila7Roja);
         dataset[(numeroPantalla * 8)+7] = binarioAdecimal(fila8Roja);
 
-        Log.d("Miapp", "Dataset " + dataset[numeroPantalla * 8] + "," + dataset[(numeroPantalla*8)+1] + "," + dataset[(numeroPantalla*8)+2]+ "," + dataset[(numeroPantalla*8)+3]+ "," + dataset[(numeroPantalla*8)+4]+ "," + dataset[(numeroPantalla*8)+5]+ "," + dataset[(numeroPantalla*8)+6]+ "," + dataset[(numeroPantalla*8)+7]);
+        // Log.d("Miapp", "Dataset " + dataset[numeroPantalla * 8] + "," + dataset[(numeroPantalla*8)+1] + "," + dataset[(numeroPantalla*8)+2]+ "," + dataset[(numeroPantalla*8)+3]+ "," + dataset[(numeroPantalla*8)+4]+ "," + dataset[(numeroPantalla*8)+5]+ "," + dataset[(numeroPantalla*8)+6]+ "," + dataset[(numeroPantalla*8)+7]);
 
         String fila1Verde = binarioVerdeTXT.substring(0,8);
         String fila2Verde = binarioVerdeTXT.substring(8,16);

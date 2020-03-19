@@ -2,6 +2,7 @@ package com.e.relojledbluetooth.Fragments;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -186,6 +187,7 @@ public class PageFragment3 extends Fragment {
 
         if (!ajustes.getAlarma().equals("")) {
             horaAlarma = Integer.parseInt(ajustes.getAlarma().substring(0,2));
+            Log.d("Miapp", ajustes.getAlarma());
             minutosAlarma = Integer.parseInt(ajustes.getAlarma().substring(3,5));
             horasTV.setText(horaAlarma + "");
             minutosTV.setText(minutosAlarma + "");
@@ -254,7 +256,9 @@ public class PageFragment3 extends Fragment {
             textoHoras = "0" + textoHoras;
         }
         String textoMinutos = minutosTV.getText().toString();
-        if (textoHoras.length() < 2) textoHoras = "0" + textoHoras;
+        if (textoMinutos.length() < 2) {
+            textoMinutos = "0" + textoMinutos;
+        }
 
         String textoAlarma = textoHoras + ":" + textoMinutos + ":00";
 

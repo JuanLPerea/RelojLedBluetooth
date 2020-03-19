@@ -101,7 +101,7 @@ public class PageFragment1 extends Fragment {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 brillo = (int) (brilloBar.getProgress()/ 6.66666666667);
                 ((MainActivity) getActivity()).enviarComandoBluetooth("#B#" + brillo);
-                Log.d("Miapp", brillo + "");
+                // Log.d("Miapp", brillo + "");
                 guardarAjustes();
             }
         });
@@ -161,7 +161,7 @@ public class PageFragment1 extends Fragment {
             hora_txt = hourFormatBluetooth.format(hora);
             mostrarHora = hourFormat.format((hora));
             horaTV.setText(mostrarHora);
-            // Log.d("Miapp" , "Son las: " + hora_txt);
+            // // Log.d("Miapp" , "Son las: " + hora_txt);
 
         }
     };
@@ -178,7 +178,7 @@ public class PageFragment1 extends Fragment {
         super.onResume();
         getActivity().runOnUiThread(Timer_Tick);
         cargarAjustes();
-        Log.d("Miapp", "Fragment 1 reanudado");
+        // Log.d("Miapp", "Fragment 1 reanudado");
 
     }
 
