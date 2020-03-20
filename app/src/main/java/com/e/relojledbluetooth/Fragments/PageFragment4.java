@@ -129,8 +129,23 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
             }
         });
 
+        enviar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                enviarXBluetooth();
+            }
+        });
+
         return rootView;
 
+    }
+
+    private void enviarXBluetooth() {
+        // Enviamos los datos del dataset por bluetooth
+        ((MainActivity) getActivity()).enviarComandoBluetooth("#Z#");
+        for (int n=0 ; n < dataset.length ; n++) {
+            ((MainActivity) getActivity()).enviarDatosBluetooth(dataset[n]);
+        }
     }
 
     private void menuAnimaciones() {
@@ -141,7 +156,6 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-         //       // Log.d("Miapp" , "Click en " + item);
                 switch (item.getItemId()) {
                     case R.id.cargar_anim:
                         // Cargar una animación guardada --------------------------------------

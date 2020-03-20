@@ -102,5 +102,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         bluetooth.sendString(comando);
     }
 
+    public void enviarDatosBluetooth (int dato) {
+        //Si no estamos conectados, terminamos
+        if (bluetooth.isConnected() == false) {
+            Toast.makeText(this, R.string.primero_conectar, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        bluetooth.send(dato);
+
+    }
+
 
 }
