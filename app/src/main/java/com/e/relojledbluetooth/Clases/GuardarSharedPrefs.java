@@ -41,10 +41,11 @@ public class GuardarSharedPrefs {
             Animacion animacionTMP = null;
             List<Animacion> listaAnimaciones = new ArrayList<>();
             List<String> listaDatos = null;
-            int[] valoresAnimacion = new int[192];
+
 
             if (listaStringsAnimaciones.size() > 1) {
                 for (String stringAnimTMP : listaStringsAnimaciones) {
+                    int[] valoresAnimacion = new int[192];
                     listaDatos = new ArrayList<>();
                     listaDatos = Arrays.asList(stringAnimTMP.split("\\s*,\\s*"));
                     animacionTMP = new Animacion();

@@ -119,10 +119,12 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
         pegar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for (int n=0; n<8 ; n++) {
-                     dataset[(numeroPantalla * 8) + n] = portapapeles[n];
-                     dataset[(numeroPantalla * 8) + n + 96 ] = portapapeles[n+8];
-                     dibujarPantalla();
+                if (portapapeles != null) {
+                    for (int n=0; n<8 ; n++) {
+                        dataset[(numeroPantalla * 8) + n] = portapapeles[n];
+                        dataset[(numeroPantalla * 8) + n + 96 ] = portapapeles[n+8];
+                        dibujarPantalla();
+                    }
                 }
             }
         });
@@ -197,6 +199,34 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
 
                 // Borrar una animación -----------------------------
                     case R.id.borrar_anim:
+                        final Dialog borrarDialog = new Dialog(getContext());
+                        borrarDialog.setContentView(R.layout.cargar_dialog);
+
+                        ListView listViewBorrar =borrarDialog.findViewById(R.id.lista_animacionesLV);
+
+                        final List<Animacion> animacionesBorrar = ajustes.getAnimaciones();
+                        List<String> nombresAnimacionesBorrar = new ArrayList<>();
+                        for (Animacion animaTMP : animacionesBorrar) {
+                            nombresAnimacionesBorrar.add(animaTMP.getNombre());
+                        }
+
+                        ArrayAdapter<String> dataAdapterBorrar = new ArrayAdapter<String>(getContext(), android.R.layout.simple_dropdown_item_1line, nombresAnimacionesBorrar);
+                        listViewBorrar.setAdapter(dataAdapterBorrar);
+
+                        listViewBorrar.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                ajustes = GuardarSharedPrefs.cargarDatos(getContext());
+                                List<Animacion> animacionesBorrar = ajustes.getAnimaciones();
+                                animacionesBorrar.remove(position);
+                                ajustes.setAnimaciones(animacionesBorrar);
+                                GuardarSharedPrefs.guardarDatos(getContext(), ajustes);
+                                Toast.makeText(getContext(), "Animación borrada", Toast.LENGTH_LONG).show();
+                                borrarDialog.dismiss();
+                            }
+                        });
+
+                        borrarDialog.show();
                         break;
                 }
                 return false;
