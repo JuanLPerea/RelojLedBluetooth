@@ -302,5 +302,6 @@ public class PageFragment3 extends Fragment {
     public void onResume() {
         super.onResume();
         cargarAjustes();
+        ((MainActivity) getActivity()).setFragmentActivo(3);
     }
 }

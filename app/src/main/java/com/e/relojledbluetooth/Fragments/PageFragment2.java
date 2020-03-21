@@ -51,24 +51,28 @@ public class PageFragment2 extends Fragment {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 Log.d("Miapp", "Seleccionado: " + checkedId);
-                switch (checkedId) {
-                    case R.id.radioButtonNormal:
-                        ((MainActivity) getActivity()).enviarComandoBluetooth("#M#" + 1);
-                        guardarAjustes();
-                        break;
-                    case R.id.radioButtonMini:
-                        ((MainActivity) getActivity()).enviarComandoBluetooth("#M#" + 2);
-                        guardarAjustes();
-                        break;
-                    case R.id.radioButtonAleat:
-                        ((MainActivity) getActivity()).enviarComandoBluetooth("#M#" + 3);
-                        guardarAjustes();
-                        break;
-                    case R.id.radioButtonFecha:
-                        ((MainActivity) getActivity()).enviarComandoBluetooth("#M#" + 4);
-                        guardarAjustes();
-                        break;
+
+                if(((MainActivity) getActivity()).getFragmentActivo() == 2) {
+                    switch (checkedId) {
+                        case R.id.radioButtonNormal:
+                            ((MainActivity) getActivity()).enviarComandoBluetooth("#M#" + 1);
+                            guardarAjustes();
+                            break;
+                        case R.id.radioButtonMini:
+                            ((MainActivity) getActivity()).enviarComandoBluetooth("#M#" + 2);
+                            guardarAjustes();
+                            break;
+                        case R.id.radioButtonAleat:
+                            ((MainActivity) getActivity()).enviarComandoBluetooth("#M#" + 3);
+                            guardarAjustes();
+                            break;
+                        case R.id.radioButtonFecha:
+                            ((MainActivity) getActivity()).enviarComandoBluetooth("#M#" + 4);
+                            guardarAjustes();
+                            break;
+                    }
                 }
+
             }
         });
 
@@ -81,7 +85,6 @@ public class PageFragment2 extends Fragment {
                 } else {
                     ((MainActivity) getActivity()).enviarComandoBluetooth("#t#" + textoEnviado);
                 }
-
             }
         });
 
@@ -139,5 +142,6 @@ public class PageFragment2 extends Fragment {
     public void onResume() {
         super.onResume();
         cargarAjustes();
+        ((MainActivity) getActivity()).setFragmentActivo(2);
     }
 }

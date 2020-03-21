@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private PagerAdapter pagerAdapter;
     private ListView dispositivos;
     private BluetoothUtils bluetooth;
+    private int fragmentActivo;
 
 
     @Override
@@ -62,6 +63,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         //la lista
         dispositivos.setOnItemClickListener(this);
 
+        fragmentActivo = 1;
+
     }
 
     /**
@@ -93,6 +96,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void enviarComandoBluetooth (String comando) {
         //Si no estamos conectados, terminamos
         if (bluetooth.isConnected() == false) {
+            Log.d("Miapp" , "Dato " + comando);
             Toast.makeText(this, R.string.primero_conectar, Toast.LENGTH_SHORT).show();
             return;
         }
@@ -105,12 +109,27 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void enviarDatosBluetooth (int dato) {
         //Si no estamos conectados, terminamos
         if (bluetooth.isConnected() == false) {
-            Toast.makeText(this, R.string.primero_conectar, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.primero_conectar , Toast.LENGTH_SHORT).show();
             return;
         }
 
         bluetooth.send(dato);
+    }
 
+    public boolean hayBluetooth() {
+        if (bluetooth.isConnected()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public int getFragmentActivo() {
+        return fragmentActivo;
+    }
+
+    public void setFragmentActivo(int fragmentSeleccionado) {
+        fragmentActivo = fragmentSeleccionado;
     }
 
 

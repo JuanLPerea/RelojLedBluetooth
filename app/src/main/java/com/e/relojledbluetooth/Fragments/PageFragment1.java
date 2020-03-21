@@ -178,6 +178,7 @@ public class PageFragment1 extends Fragment {
         super.onResume();
         getActivity().runOnUiThread(Timer_Tick);
         cargarAjustes();
+        ((MainActivity) getActivity()).setFragmentActivo(1);
         // Log.d("Miapp", "Fragment 1 reanudado");
 
     }
