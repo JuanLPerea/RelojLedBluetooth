@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -52,6 +53,8 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
     int dataset[];
     int portapapeles[];
     int width, height;
+    int contador;
+    int datosEnviados;
 
     @Nullable
     @Override
@@ -144,10 +147,33 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
 
         if (((MainActivity) getActivity()).hayBluetooth()) {
             // Enviamos los datos del dataset por bluetooth
-            ((MainActivity) getActivity()).enviarComandoBluetooth("#Z#");
-            for (int n=0 ; n < dataset.length ; n++) {
-                ((MainActivity) getActivity()).enviarDatosBluetooth(dataset[n]);
-            }
+            ((MainActivity) getActivity()).enviarComandoBluetooth("#X#");
+
+            contador = 0;
+            datosEnviados = 0;
+
+            // Enviar los datos, esperar 1 segundo antes de empezar y hacerlo espaciadamente mediante un temporizador
+            CountDownTimer temporizador = new CountDownTimer(30000, 100) {
+
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    contador++;
+                    if (contador>100 && datosEnviados < dataset.length) {
+                        ((MainActivity) getActivity()).enviarDatosBluetooth(dataset[datosEnviados]);
+                        Log.d("Miapp" , "Dato bluetooth: " + dataset[datosEnviados]);
+                        datosEnviados++;
+                    }
+                }
+
+                @Override
+                public void onFinish() {
+                    this.cancel();
+                }
+            };
+
+            temporizador.start();
+
+
         } else {
             Toast.makeText(getContext(), R.string.primero_conectar, Toast.LENGTH_SHORT).show();
         }
@@ -447,8 +473,6 @@ public class PageFragment4 extends Fragment implements View.OnClickListener {
         b62.setOnClickListener(this);
         b63.setOnClickListener(this);
         b64.setOnClickListener(this);
-
-
    }
 
 

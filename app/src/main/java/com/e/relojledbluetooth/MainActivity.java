@@ -84,13 +84,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         if (bluetooth.connect(index)){
             Toast.makeText(this, R.string.conectado, Toast.LENGTH_SHORT).show();
         }
-
     }
 
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
-
     }
 
     public void enviarComandoBluetooth (String comando) {
@@ -112,7 +110,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             Toast.makeText(this, R.string.primero_conectar , Toast.LENGTH_SHORT).show();
             return;
         }
-
         bluetooth.send(dato);
     }
 
